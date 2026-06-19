@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연구노트 — 이가녹스 1010 분량별 정밀도 평가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#7132F5;--purple-deep:#5B1ECF;--teal:#159A8A;--black:#101114;--gray:#686B82;--silver:#9497A9;
+        --border:#DEDEE5;--soft:#F6F6F9;--green-deep:#026B3F;--green-subtle:#DCF1E8;--amber:#B45309;--red:#B42318;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans KR",sans-serif;color:var(--black);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 28px 60px}
+  .hero{background:var(--purple);color:#fff;padding:40px 0 46px;position:relative;overflow:hidden}
+  .hero .inner{max-width:900px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  .hero .blob{position:absolute;border-radius:50%;background:var(--purple-deep);opacity:.5}
+  .logo{display:flex;align-items:center;gap:11px;margin-bottom:24px}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:#fff;opacity:.95}
+  .logo span{font-weight:700;font-size:18px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;opacity:.9;margin-bottom:10px}
+  .hero h1{font-size:27px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+  .hero .sub{margin-top:13px;font-size:13.5px;opacity:.92}
+  section{margin-top:36px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--purple)}
+  h2{font-size:21px;font-weight:700;margin-top:5px;letter-spacing:-.01em}
+  h3{font-size:14.5px;font-weight:700;margin:18px 0 0;color:#33343B}
+  p.lead{margin-top:12px;font-size:14.5px;color:#33343B}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+  th{background:var(--purple);color:#fff;font-weight:700;padding:9px 10px;text-align:center;font-size:12.5px}
+  th:first-child{border-radius:9px 0 0 0}th:last-child{border-radius:0 9px 0 0}
+  td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--border)}
+  tr:nth-child(even) td{background:var(--soft)}
+  td.grp{font-weight:700;color:var(--purple)}
+  td.ref{color:var(--silver)}
+  td.best{background:#EAF7F1!important;color:var(--green-deep);font-weight:700}
+  .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px 22px;margin-top:16px}
+  .legend{display:flex;gap:16px;font-size:12.5px;margin-bottom:6px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .takeaway{background:var(--green-subtle);border:1px solid #B7E0CB;border-radius:14px;padding:16px 20px;margin-top:16px}
+  .takeaway b{color:var(--green-deep)}
+  .warn{background:#FFF6E8;border:1px solid #F0D08A;border-radius:14px;padding:16px 20px;margin-top:16px;font-size:13.8px;color:#7A5310}
+  .warn b{color:#7A5310}
+  ul.k{margin-top:10px;padding-left:2px;list-style:none}
+  ul.k li{font-size:13.8px;color:var(--gray);padding:5px 0;display:flex;gap:9px}
+  ul.k li::before{content:"•";color:var(--purple);font-weight:700}
+  ul.k li b{color:#33343B}
+  .note{font-size:12px;color:var(--silver);margin-top:12px}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:12px;color:var(--silver)}
+  footer b{color:var(--black)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="blob" style="width:320px;height:320px;top:-130px;right:-70px"></div>
+  <div class="inner">
+    <div class="logo"><div class="mark"></div><span>gloud</span></div>
+    <div class="eyebrow">RESEARCH NOTE · ADDITIVE SCREEN</div>
+    <h1>이가녹스 1010 분량별 정밀도 평가</h1>
+    <div class="sub">베이스 0617-1 · 기준 = 하루 후 가볍게 재분산 후 출력 · 9 mW/cm² · 1.2 s · n = 9 · 2026-06-18</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="tag">01 · BACKGROUND</div>
+    <h2>배경 및 기준 변경</h2>
+    <p class="lead">방치·재분산 시 과경화 드리프트가 확인됨(연구노트 1, 원인은 용존 산소가 유력). 이를 화학적으로 안정화하기 위해:</p>
+    <ul class="k">
+      <li><b>출력 기준 변경</b> — "제조 직후"가 아닌 <b>하루 후 가볍게 흔들어 재분산한 상태에서 출력</b>을 기준으로 삼음(실제 취급 반영).</li>
+      <li><b>이가녹스 1010</b>(힌더드 페놀계 라디칼 스캐빈저)을 분량별로 첨가 → 비휘발성 저해제로 경화깊이를 안정화할 수 있는지 평가.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="tag">02 · COMPOSITION</div>
+    <h2>조성 (1010 분량 비교)</h2>
+    <table>
+      <thead><tr><th>조성</th><th>1010 (wt%)</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">0617-1</td><td>0</td><td>무첨가 기준</td></tr>
+        <tr><td class="grp">0618-2</td><td>0.05</td><td>금일 평가</td></tr>
+        <tr><td class="grp">0618-3</td><td>0.10</td><td>금일 평가</td></tr>
+        <tr><td class="grp">0619-1</td><td>0.075</td><td>차주 평가 예정</td></tr>
+      </tbody>
+    </table>
+    <p class="note">1010 외 성분 동일 (Bis-GMA 9.42 / PU340 20.69 / HEMA 11.01 / ACMO 11.01 / NPGDA 22.17 / Ba-glass 19.32 / SiO2 5.57 / BYK 0.25 / BAPO 0.56). 0618-1은 별도 reformulation으로 "재분산도 떨어짐" 진행 중지 — 본 시리즈와 무관.</p>
+  </section>
+
+  <section>
+    <div class="tag">03 · CURE DEPTH</div>
+    <h2>Cure depth (9 mW/cm² · 1.5 s · 13.5 mJ)</h2>
+    <div class="card">
+      <div class="card" style="border:none;padding:0;margin:0">
+        <svg viewBox="0 0 560 330" width="100%" role="img" aria-label="이가녹스 1010 함량별 경화깊이, 1010 증가 시 단조 감소">
+          <g stroke="#EEEEF2" stroke-width="1">
+            <line x1="90" y1="232.5" x2="500" y2="232.5"/><line x1="90" y1="165" x2="500" y2="165"/><line x1="90" y1="97.5" x2="500" y2="97.5"/>
+          </g>
+          <line x1="90" y1="30" x2="90" y2="300" stroke="#C9C9D2" stroke-width="1.5"/>
+          <line x1="90" y1="300" x2="500" y2="300" stroke="#C9C9D2" stroke-width="1.5"/>
+          <g font-family="Noto Sans KR" font-size="11" fill="#9497A9" text-anchor="end">
+            <text x="82" y="304">0</text><text x="82" y="236">50</text><text x="82" y="169">100</text><text x="82" y="101">150</text><text x="82" y="34">200</text>
+          </g>
+          <!-- bars -->
+          <g fill="#7132F5">
+            <rect x="140" y="97.5" width="60" height="202.5"/>
+            <rect x="265" y="121.8" width="60" height="178.2"/>
+            <rect x="390" y="132.6" width="60" height="167.4"/>
+          </g>
+          <!-- error bars -->
+          <g stroke="#101114" stroke-width="1.5">
+            <line x1="170" y1="77.3" x2="170" y2="117.8"/><line x1="164" y1="77.3" x2="176" y2="77.3"/><line x1="164" y1="117.8" x2="176" y2="117.8"/>
+            <line x1="295" y1="95.9" x2="295" y2="147.7"/><line x1="289" y1="95.9" x2="301" y2="95.9"/><line x1="289" y1="147.7" x2="301" y2="147.7"/>
+            <line x1="420" y1="114.6" x2="420" y2="150.6"/><line x1="414" y1="114.6" x2="426" y2="114.6"/><line x1="414" y1="150.6" x2="426" y2="150.6"/>
+          </g>
+          <g font-family="Noto Sans KR" font-size="13" font-weight="700" fill="#101114" text-anchor="middle">
+            <text x="170" y="91">150.0</text><text x="295" y="115">132.2</text><text x="420" y="126">124.4</text>
+          </g>
+          <g font-family="Noto Sans KR" font-size="12" fill="#686B82" text-anchor="middle">
+            <text x="170" y="318">1010  0%</text><text x="295" y="318">0.05%</text><text x="420" y="318">0.10%</text>
+          </g>
+          <text x="28" y="165" font-family="Noto Sans KR" font-size="12.5" fill="#686B82" text-anchor="middle" transform="rotate(-90 28 165)">Cure depth (µm)</text>
+        </svg>
+      </div>
+      <div class="note">1010 증가 → cure depth 단조 감소(150 → 132 → 124 µm). 라디칼 스캐빈저가 경화깊이를 낮춤이 정량 확인됨.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag">04 · ACCURACY</div>
+    <h2>정밀도 (전부 방치·재분산 후 · 1.2 s)</h2>
+    <p class="note" style="margin-top:6px">값 = 오차(%). 회색 열 = 0617-1 제조 직후(무첨가) 참고. 초록 = 직후 수준으로 복귀.</p>
+
+    <h3>Inlay</h3>
+    <table>
+      <thead><tr><th>디자인(mm)</th><th>직후 · 1010 0</th><th>방치 · 1010 0</th><th>방치 · 0.05</th><th>방치 · 0.10</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">1.5</td><td class="ref">+4.0</td><td>+8.7</td><td class="best">+2.7</td><td>+4.0</td></tr>
+        <tr><td class="grp">2</td><td class="ref">+4.5</td><td>+7.5</td><td class="best">+3.0</td><td>+3.5</td></tr>
+        <tr><td class="grp">3</td><td class="ref">+2.0</td><td>+4.7</td><td class="best">+1.7</td><td>+2.0</td></tr>
+        <tr><td class="grp">4</td><td class="ref">+1.3</td><td>+3.3</td><td class="best">+1.3</td><td>+1.5</td></tr>
+        <tr><td class="grp">10</td><td class="ref">−0.8</td><td>+0.3</td><td class="best">−0.4</td><td>−0.6</td></tr>
+        <tr><td class="grp">12</td><td class="ref">−0.7</td><td>+0.1</td><td class="best">−0.6</td><td>−0.75</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Veneer</h3>
+    <table>
+      <thead><tr><th>디자인(mm)</th><th>직후 · 1010 0</th><th>방치 · 1010 0</th><th>방치 · 0.05</th><th>방치 · 0.10</th></tr></thead>
+      <tbody>
+        <tr><td class="grp">0.5</td><td class="ref">+6.0</td><td>+14.0</td><td class="best">0.0</td><td>+10.0</td></tr>
+        <tr><td class="grp">1L</td><td class="ref">0.0</td><td>+9.0</td><td class="best">0.0</td><td>+7.0</td></tr>
+        <tr><td class="grp">1R</td><td class="ref">0.0</td><td>+10.0</td><td class="best">+2.0</td><td>+5.0</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="legend">
+        <span><i style="background:#9497A9"></i>직후 · 1010 0</span>
+        <span><i style="background:#B42318"></i>방치 · 1010 0</span>
+        <span><i style="background:#159A8A"></i>방치 · 0.05</span>
+        <span><i style="background:#7132F5"></i>방치 · 0.10</span>
+      </div>
+      <svg viewBox="0 0 560 340" width="100%" role="img" aria-label="대표 박형 측정점에서 1010이 방치 과경화를 직후 수준으로 보정">
+        <rect x="90" y="264" width="410" height="36" fill="#E6F1E5"/>
+        <text x="96" y="278" font-family="Noto Sans KR" font-size="10" fill="#3B6D11">허용 ±2%</text>
+        <line x1="90" y1="30" x2="90" y2="300" stroke="#C9C9D2" stroke-width="1.5"/>
+        <line x1="90" y1="300" x2="500" y2="300" stroke="#C9C9D2" stroke-width="1.5"/>
+        <g font-family="Noto Sans KR" font-size="11" fill="#9497A9" text-anchor="end">
+          <text x="82" y="304">0</text><text x="82" y="268">2</text><text x="82" y="196">6</text><text x="82" y="124">10</text><text x="82" y="52">14</text>
+        </g>
+        <!-- Group 1: Inlay 1.5 (center 220) -->
+        <g>
+          <rect x="169" y="228" width="24" height="72" fill="#9497A9"/>
+          <rect x="195" y="143" width="24" height="157" fill="#B42318"/>
+          <rect x="221" y="251" width="24" height="49" fill="#159A8A"/>
+          <rect x="247" y="228" width="24" height="72" fill="#7132F5"/>
+        </g>
+        <!-- Group 2: Veneer 0.5 (center 420) -->
+        <g>
+          <rect x="369" y="192" width="24" height="108" fill="#9497A9"/>
+          <rect x="395" y="48" width="24" height="252" fill="#B42318"/>
+          <circle cx="433" cy="300" r="3.5" fill="#159A8A"/>
+          <rect x="447" y="120" width="24" height="180" fill="#7132F5"/>
+        </g>
+        <g font-family="Noto Sans KR" font-size="11.5" font-weight="700" fill="#9497A9" text-anchor="middle">
+          <text x="220" y="320">Inlay 1.5mm</text><text x="420" y="320">Veneer 0.5mm</text>
+        </g>
+        <text x="28" y="165" font-family="Noto Sans KR" font-size="12.5" fill="#686B82" text-anchor="middle" transform="rotate(-90 28 165)">오차 (%)</text>
+      </svg>
+      <div class="note">방치·무첨가(빨강)가 가장 크게 튐 → 1010 0.05%(청록)에서 직후 수준으로 복귀. 0.10%(보라)는 Inlay는 직후와 유사하나 Veneer가 다시 높음.</div>
+    </div>
+
+    <div class="takeaway">
+      <b>핵심:</b> 방치·재분산 후 과경화된 무첨가가 <b>1010 첨가 시 "제조 직후·무첨가" 수준으로 보정됨.</b> 0.05%가 가장 깔끔(Veneer 0/0/+2%). 0.10%는 Inlay는 직후와 유사하나 Veneer가 +10/+7/+5%로 이상 — 해당 런 노이즈·재분산 이슈 의심(재현 필요).
+    </div>
+    <p class="note">기전(가설): 1010은 비휘발성 라디칼 저해제로, 방치 중 빠져나간 용존 O₂ 저해를 대신 메워 경화깊이를 낮추고 시점 변동을 줄이는 것으로 보임(연구노트 1의 산소 가설과 정합).</p>
+  </section>
+
+  <section>
+    <div class="tag">05 · PRINTABILITY</div>
+    <h2>0.10% 출력 실패율 증가</h2>
+    <div class="warn">
+      <b>금일 관찰:</b> 1010 <b>0.10%에서 출력 실패율 증가.</b> cure depth가 124 µm까지 낮아져(과저해) 층간 접착·박형 경화 여유가 줄어든 것과 정합적. → <b>1010 사용 시 상한 &lt; 0.10%</b> 설정 필요. <b>0619-1(0.075%)을 차주 평가 예정.</b>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag">06 · SAFETY</div>
+    <h2>이가녹스 1010 안전성·세포독성</h2>
+    <p class="note" style="margin-top:6px">신뢰도 🟡 일반 문헌·규제 지식 — 사용 lot SDS·규제 현황으로 검증 필요.</p>
+    <ul class="k">
+      <li><b>물질:</b> Irganox 1010 (CAS 6683-19-8), 힌더드 페놀계 1차 산화방지제, MW ≈ 1178.</li>
+      <li><b>급성독성 낮음:</b> 경구 LD50(rat) &gt; 5000 mg/kg 수준의 "실질적 무독성" 등급으로 보고됨.</li>
+      <li><b>규제:</b> FDA 식품접촉(21 CFR), EU 식품접촉(10/2011) 등재 — 식품·의료 등급 고분자에 광범위 사용. CMR(발암·변이원·생식독성) 미분류가 일반적.</li>
+      <li><b>이행:</b> 고분자량·저수용해도 → migration·생체이용률 낮은 편.</li>
+    </ul>
+    <div class="warn">
+      <b>⚠️ 치과용 의료기기(Class II) 관점:</b> 일반 산업/식품 안전성과 기기 수준 생체적합성은 별개임. 인증 척도는 원료 평판이 아니라 <b>경화된 최종 레진의 ISO 10993-5(세포독성) + 용출물(leachables) 평가</b>임. 1010은 <b>반응성 없는 자유 첨가제 → 용출 가능</b>(MW 1178, 이동성 중간)이므로, "식품접촉 승인 = 기기 안전"으로 단정 금지. 1010 함유 조성은 기기 형태로 ISO 10993-5 및 용출 시험을 수행해 확인 필요.
+    </div>
+  </section>
+
+  <section>
+    <div class="tag">07 · OPEN ITEMS</div>
+    <h2>미해결·확인 필요</h2>
+    <ul class="k">
+      <li><b>직후 측정 누락:</b> 1010 조성은 제조 직후 미측정 → 1010 조성을 <b>직후 vs 24h 둘 다 측정</b>해 두 시점이 같아야 "드리프트 제거" 확정.</li>
+      <li><b>물성 트레이드오프:</b> 1010은 저해제 → DC·굴곡강도 저하 가능 → ISO 기준(굴곡강도 ≥80 MPa, DC ≥75%) 충족 확인. 노광시간 보정 가능성.</li>
+      <li><b>색(b*):</b> 1010(산화방지제)이 후경화 열-산화 황변 완화 가능 ↔ 과량 변색 위험 → b* 정량.</li>
+      <li><b>용출·생체적합성:</b> ISO 10993-5 + 용출 시험을 기기 수준에서 수행.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="tag">08 · CONCLUSION</div>
+    <h2>결론 및 향후</h2>
+    <div class="takeaway">
+      이가녹스 1010은 방치·재분산 드리프트를 <b>화학적으로 보정</b>하는 유효 레버로 보임. 단 <b>0.10%는 출력성 저하</b>로 상한 미만이어야 하며, <b>&lt;0.10%(0619-1, 0.075%)에서 차주 최적화</b> 예정.
+    </div>
+    <p class="note"><b>3일 방치·재분산 정밀도 평가</b> 결과를 종합한 뒤, 본 발견(저해 안정화)의 스킬(가드레일) 반영 여부를 결정함.</p>
+  </section>
+
+  <footer><span><b>gloud</b> · 연구노트 · 이가녹스 1010 분량별 정밀도</span><span>베이스 0617-1 · 1.2 s · 2026-06-18</span></footer>
+
+</div>
+</body>
+</html>
