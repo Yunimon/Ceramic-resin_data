@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이가녹스 1010 첨가량별 굴곡강도·탄성계수 — ANOVA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:#1A1330;background:#F4F2FA;line-height:1.62;word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden}
+.wrap{max-width:860px;margin:0 auto;background:#fff;box-shadow:0 1px 30px rgba(40,20,90,.06)}
+.hero{position:relative;background:linear-gradient(135deg,#7132F5,#4D1FB0);color:#fff;padding:40px 44px 34px;overflow:hidden}
+.hero .blob{position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.22),transparent 70%)}
+.logo{font-weight:800;letter-spacing:.5px;font-size:15px;opacity:.92;margin-bottom:16px}
+.hero h1{font-size:25px;font-weight:800;line-height:1.32;letter-spacing:-.3px}
+.hero .sub{margin-top:12px;font-size:13.5px;opacity:.95;font-weight:500}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.meta span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:600}
+section{padding:30px 44px}
+section+section{border-top:1px solid #EFECF6}
+.tag{font-size:11px;font-weight:800;letter-spacing:1.4px;color:#7132F5;margin-bottom:8px}
+h2{font-size:19px;font-weight:800;letter-spacing:-.2px;margin-bottom:4px}
+p{font-size:13.8px;color:#403A54;margin-top:10px}
+.note{font-size:12.5px;color:#8A8499}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:12.4px}
+th,td{padding:7px 8px;text-align:center;border-bottom:1px solid #EFECF6}
+thead th{background:#7132F5;color:#fff;font-weight:700;border-bottom:none}
+thead th:first-child{border-radius:6px 0 0 0} thead th:last-child{border-radius:0 6px 0 0}
+td.lh{font-weight:700;color:#4D1FB0} td.hi{font-weight:700;background:#F6F3FE}
+tbody tr:nth-child(even){background:#FAF9FE}
+.k{margin-top:12px;list-style:none}
+.k li{font-size:13.6px;color:#403A54;padding:5px 0 5px 18px;position:relative;line-height:1.6}
+.k li::before{content:"•";color:#7132F5;font-weight:700;position:absolute;left:2px;top:4px}
+.k li b{color:#1A1330}
+.box{margin-top:16px;border-radius:10px;padding:15px 18px;font-size:13.2px}
+.takeaway{background:#E8F8F1;border:1px solid #B6E8D3}
+.takeaway b{color:#0B7A52}
+.warn{background:#FFF6E6;border:1px solid #F3D89A}
+.warn b{color:#A86A00}
+.chartbox{margin-top:16px;background:#fff;border:1px solid #EFECF6;border-radius:10px;padding:8px 6px}
+.chartcap{font-size:11.8px;color:#8A8499;text-align:center;margin:4px 0 8px}
+svg .ax{font-size:10px;fill:#8A8499} svg .axt{font-size:11px;fill:#5B5570;font-weight:600}
+svg .xl{font-size:12px;fill:#1A1330;font-weight:700} svg .xs{font-size:10px;fill:#8A8499}
+svg .val{font-size:11.5px;fill:#1A1330;font-weight:700} svg .sdl{font-size:9.5px;fill:#8A8499}
+svg .ref{font-size:9.5px;font-weight:700} svg .sig{font-size:10.5px;fill:#33343B;font-weight:700}
+.foot{padding:20px 44px 30px;font-size:11px;color:#A7A2B5;border-top:1px solid #EFECF6}
+</style></head><body><div class="wrap">
+
+<div class="hero"><div class="blob"></div>
+<div class="logo">gloud</div>
+<h1>이가녹스 1010 첨가량별<br>굴곡강도·탄성계수 통계 분석</h1>
+<div class="sub">단일인자 one-way ANOVA · 3-point bending · 0617-1 / 0618-2 / 0619-1</div>
+<div class="meta"><span>이가녹스 1010 = 0 / 0.05 / 0.075 wt%</span><span>각 n = 5</span><span>🟢 실측</span><span>2026-06-23</span></div>
+</div>
+
+<section>
+<div class="tag">01 · 배경 · 목적</div>
+<h2>이가녹스 1010 첨가량이 기계물성에 영향을 주는가</h2>
+<p>세 조성(0617-1 / 0618-2 / 0619-1)은 베이스 레진·필러가 동일하고 <b>이가녹스 1010 첨가량만 0 / 0.05 / 0.075 wt%</b>로 다름. 따라서 이가녹스 1010 수준을 단일 인자로 한 3집단 비교(one-way ANOVA)로, 첨가량이 굴곡강도(MPa)·탄성계수(GPa)에 유의한 영향을 주는지 검정함.</p>
+<ul class="k">
+<li><b>가설(H₀):</b> 세 첨가량의 평균 물성이 모두 같음.</li>
+<li><b>대립(H₁):</b> 적어도 한 첨가량의 평균이 다름.</li>
+<li>유의수준 α = 0.05. 등분산(Levene)·사후 다중비교(Tukey HSD)·이분산 robust(Alexander–Govern)를 함께 확인함.</li>
+</ul>
+</section>
+
+<section>
+<div class="tag">02 · 조성</div>
+<h2>비교 조성 (단위 wt%)</h2>
+<table><thead><tr><th>조성</th><th>이가녹스 1010</th><th>Bis-GMA</th><th>PU340</th><th>HEMA</th><th>ACMO</th><th>NPGDA</th><th>Ba-glass</th><th>SiO₂</th><th>BYK-9076</th><th>BAPO</th></tr></thead>
+<tbody>
+<tr><td class="lh">0617-1</td><td class="hi">0</td><td>9.42</td><td>20.69</td><td>11.01</td><td>11.01</td><td>22.17</td><td>19.32</td><td>5.57</td><td>0.25</td><td>0.56</td></tr>
+<tr><td class="lh">0618-2</td><td class="hi">0.05</td><td>9.42</td><td>20.69</td><td>11.01</td><td>11.01</td><td>22.17</td><td>19.32</td><td>5.57</td><td>0.25</td><td>0.56</td></tr>
+<tr><td class="lh">0619-1</td><td class="hi">0.075</td><td>9.42</td><td>20.69</td><td>11.01</td><td>11.01</td><td>22.17</td><td>19.32</td><td>5.57</td><td>0.25</td><td>0.56</td></tr>
+</tbody></table>
+<p class="note">이가녹스 1010은 베이스 위에 가산되어 합계 100.05 / 100.075%로 표기됨. 시험: 3점 굽힘, 광량 9 mW/cm², 후경화 7A 3.5 min.</p>
+</section>
+
+<section>
+<div class="tag">03 · 측정값 (🟢 실측, n=5)</div>
+<h2>굴곡강도 · 탄성계수 원자료</h2>
+<p class="note" style="margin-top:6px">굴곡강도 [MPa] — 5개 시편</p>
+<table><thead><tr><th>조성</th><th>1010(%)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>평균</th><th>SD</th></tr></thead><tbody><tr><td class="lh">0617-1</td><td>0</td><td>113.46</td><td>118.40</td><td>121.56</td><td>118.40</td><td>118.10</td><td class="hi">117.98</td><td>2.90</td></tr><tr><td class="lh">0618-2</td><td>0.05</td><td>117.71</td><td>118.40</td><td>116.82</td><td>114.75</td><td>119.58</td><td class="hi">117.45</td><td>1.82</td></tr><tr><td class="lh">0619-1</td><td>0.075</td><td>111.89</td><td>108.83</td><td>118.69</td><td>111.59</td><td>114.55</td><td class="hi">113.11</td><td>3.72</td></tr></tbody></table>
+<p class="note" style="margin-top:14px">탄성계수 [GPa] — 5개 시편</p>
+<table><thead><tr><th>조성</th><th>1010(%)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>평균</th><th>SD</th></tr></thead><tbody><tr><td class="lh">0617-1</td><td>0</td><td>3.18</td><td>3.42</td><td>3.33</td><td>3.20</td><td>3.14</td><td class="hi">3.25</td><td>0.12</td></tr><tr><td class="lh">0618-2</td><td>0.05</td><td>3.45</td><td>3.55</td><td>3.26</td><td>3.43</td><td>3.18</td><td class="hi">3.37</td><td>0.15</td></tr><tr><td class="lh">0619-1</td><td>0.075</td><td>3.33</td><td>2.94</td><td>3.15</td><td>3.00</td><td>3.19</td><td class="hi">3.12</td><td>0.16</td></tr></tbody></table>
+<h2 style="margin-top:24px;font-size:15px">기술통계 요약</h2>
+<table><thead><tr><th>조성</th><th>1010(%)</th><th>굴곡강도 [MPa]<br>평균±SD</th><th>SEM</th><th>탄성계수 [GPa]<br>평균±SD</th><th>SEM</th></tr></thead><tbody><tr><td class="lh">0617-1</td><td>0</td><td class="hi">117.98 ± 2.90</td><td>1.30</td><td class="hi">3.25 ± 0.12</td><td>0.05</td></tr><tr><td class="lh">0618-2</td><td>0.05</td><td class="hi">117.45 ± 1.82</td><td>0.81</td><td class="hi">3.37 ± 0.15</td><td>0.07</td></tr><tr><td class="lh">0619-1</td><td>0.075</td><td class="hi">113.11 ± 3.72</td><td>1.66</td><td class="hi">3.12 ± 0.16</td><td>0.07</td></tr></tbody></table>
+</section>
+
+<section>
+<div class="tag">04 · 통계 분석 · one-way ANOVA</div>
+<h2>분산분석 결과</h2>
+<table><thead><tr><th>물성</th><th>요인 SS</th><th>오차 SS</th><th>df</th><th>F</th><th>p</th><th>η²</th><th>Levene p</th></tr></thead><tbody>
+<tr><td class="lh">굴곡강도</td><td>71.49</td><td>102.14</td><td>2 / 12</td><td class="hi">4.20</td><td class="hi">0.041</td><td>0.41</td><td>0.64</td></tr>
+<tr><td class="lh">탄성계수</td><td>0.159</td><td>0.242</td><td>2 / 12</td><td class="hi">3.94</td><td class="hi">0.048</td><td>0.40</td><td>0.87</td></tr>
+</tbody></table>
+<p class="note">Levene p &gt; 0.05 → 등분산 가정 충족. omnibus p는 둘 다 0.05 직하(경계 유의).</p>
+
+<h2 style="margin-top:22px;font-size:15px">사후 다중비교 (Tukey HSD) · 이분산 robust</h2>
+<table><thead><tr><th>물성</th><th>비교쌍</th><th>평균차</th><th>p (Tukey, 보정)</th><th>유의(α=.05)</th></tr></thead><tbody>
+<tr><td class="lh" rowspan="3">굴곡강도<br>(MPa)</td><td>0617-1 vs 0618-2</td><td>−0.53</td><td>0.955</td><td>아니오</td></tr>
+<tr><td>0617-1 vs 0619-1</td><td>−4.87</td><td>0.052</td><td>아니오(경계)</td></tr>
+<tr><td>0618-2 vs 0619-1</td><td>−4.34</td><td>0.086</td><td>아니오</td></tr>
+<tr><td class="lh" rowspan="3">탄성계수<br>(GPa)</td><td>0617-1 vs 0618-2</td><td>+0.12</td><td>0.403</td><td>아니오</td></tr>
+<tr><td>0617-1 vs 0619-1</td><td>−0.13</td><td>0.339</td><td>아니오</td></tr>
+<tr><td>0618-2 vs 0619-1</td><td>−0.25</td><td class="hi">0.039</td><td>예 *</td></tr>
+</tbody></table>
+<p class="note">이분산 robust(Alexander–Govern): 굴곡강도 p = 0.144, 탄성계수 p = 0.113 → 둘 다 비유의.</p>
+
+<div class="chartbox"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img">
+<line x1="92" y1="44" x2="92" y2="300" stroke="#C9C3DA" stroke-width="1"/>
+<line x1="92" y1="300" x2="600" y2="300" stroke="#C9C3DA" stroke-width="1"/>
+<line x1="88" y1="300.0" x2="600" y2="300.0" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="303.0" text-anchor="end">0</text>
+<line x1="88" y1="243.1" x2="600" y2="243.1" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="246.1" text-anchor="end">40</text>
+<line x1="88" y1="186.2" x2="600" y2="186.2" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="189.2" text-anchor="end">80</text>
+<line x1="88" y1="129.3" x2="600" y2="129.3" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="132.3" text-anchor="end">120</text>
+<line x1="88" y1="72.4" x2="600" y2="72.4" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="75.4" text-anchor="end">160</text>
+<text class="axt" x="26" y="172" text-anchor="middle" transform="rotate(-90 26 172)">굴곡강도 (MPa)</text>
+<line x1="92" y1="186.2" x2="600" y2="186.2" stroke="#159A8A" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text class="ref" x="598" y="181.2" text-anchor="end" fill="#159A8A">인증 최소 80</text>
+<line x1="92" y1="51.1" x2="600" y2="51.1" stroke="#D63A3A" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text class="ref" x="598" y="46.1" text-anchor="end" fill="#D63A3A">최종 목표 175</text>
+<rect x="155" y="132.2" width="66" height="167.8" rx="3" fill="#7132F5" opacity="0.88"/>
+<line x1="188" y1="128.1" x2="188" y2="136.3" stroke="#33343B" stroke-width="1.4"/>
+<line x1="179" y1="128.1" x2="197" y2="128.1" stroke="#33343B" stroke-width="1.4"/>
+<line x1="179" y1="136.3" x2="197" y2="136.3" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="172" cy="138.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="180" cy="131.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="188" cy="127.1" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="196" cy="131.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="204" cy="132.0" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="188" y="119.1" text-anchor="middle">117.98</text>
+<text class="sdl" x="188" y="129.1" text-anchor="middle">±2.90</text>
+<text class="xl" x="188" y="318" text-anchor="middle">0617-1</text>
+<text class="xs" x="188" y="333" text-anchor="middle">이가녹스 1010 0%</text>
+<rect x="311" y="133.0" width="66" height="167.0" rx="3" fill="#8A52F7" opacity="0.88"/>
+<line x1="344" y1="130.4" x2="344" y2="135.5" stroke="#33343B" stroke-width="1.4"/>
+<line x1="335" y1="130.4" x2="353" y2="130.4" stroke="#33343B" stroke-width="1.4"/>
+<line x1="335" y1="135.5" x2="353" y2="135.5" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="328" cy="132.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="336" cy="131.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="344" cy="133.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="352" cy="136.8" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="360" cy="129.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="344" y="121.4" text-anchor="middle">117.45</text>
+<text class="sdl" x="344" y="131.4" text-anchor="middle">±1.82</text>
+<text class="xl" x="344" y="318" text-anchor="middle">0618-2</text>
+<text class="xs" x="344" y="333" text-anchor="middle">이가녹스 1010 0.05%</text>
+<rect x="467" y="139.1" width="66" height="160.9" rx="3" fill="#159A8A" opacity="0.88"/>
+<line x1="500" y1="133.8" x2="500" y2="144.4" stroke="#33343B" stroke-width="1.4"/>
+<line x1="491" y1="133.8" x2="509" y2="133.8" stroke="#33343B" stroke-width="1.4"/>
+<line x1="491" y1="144.4" x2="509" y2="144.4" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="484" cy="140.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="492" cy="145.2" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="500" cy="131.2" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="508" cy="141.3" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="516" cy="137.1" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="500" y="124.8" text-anchor="middle">113.11</text>
+<text class="sdl" x="500" y="134.8" text-anchor="middle">±3.72</text>
+<text class="xl" x="500" y="318" text-anchor="middle">0619-1</text>
+<text class="xs" x="500" y="333" text-anchor="middle">이가녹스 1010 0.075%</text>
+</svg><div class="chartcap">굴곡강도. 막대=평균, 오차막대=±SD, 점=개별 시편(n=5). 점선=인증 최소 80 MPa·최종 목표 175 MPa.</div></div>
+<div class="chartbox"><svg viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img">
+<line x1="92" y1="44" x2="92" y2="270" stroke="#C9C3DA" stroke-width="1"/>
+<line x1="92" y1="270" x2="600" y2="270" stroke="#C9C3DA" stroke-width="1"/>
+<line x1="88" y1="270.0" x2="600" y2="270.0" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="273.0" text-anchor="end">0</text>
+<line x1="88" y1="213.5" x2="600" y2="213.5" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="216.5" text-anchor="end">1</text>
+<line x1="88" y1="157.0" x2="600" y2="157.0" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="160.0" text-anchor="end">2</text>
+<line x1="88" y1="100.5" x2="600" y2="100.5" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="103.5" text-anchor="end">3</text>
+<line x1="88" y1="44.0" x2="600" y2="44.0" stroke="#EFECF6" stroke-width="1"/>
+<text class="ax" x="83" y="47.0" text-anchor="end">4</text>
+<text class="axt" x="26" y="157" text-anchor="middle" transform="rotate(-90 26 157)">탄성계수 (GPa)</text>
+<rect x="155" y="86.1" width="66" height="183.9" rx="3" fill="#7132F5" opacity="0.88"/>
+<line x1="188" y1="79.5" x2="188" y2="92.8" stroke="#33343B" stroke-width="1.4"/>
+<line x1="179" y1="79.5" x2="197" y2="79.5" stroke="#33343B" stroke-width="1.4"/>
+<line x1="179" y1="92.8" x2="197" y2="92.8" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="172" cy="90.3" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="180" cy="76.8" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="188" cy="81.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="196" cy="89.2" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="204" cy="92.6" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="188" y="70.5" text-anchor="middle">3.25</text>
+<text class="sdl" x="188" y="80.5" text-anchor="middle">±0.12</text>
+<text class="xl" x="188" y="288" text-anchor="middle">0617-1</text>
+<text class="xs" x="188" y="303" text-anchor="middle">이가녹스 1010 0%</text>
+<rect x="311" y="79.4" width="66" height="190.6" rx="3" fill="#8A52F7" opacity="0.88"/>
+<line x1="344" y1="70.9" x2="344" y2="87.9" stroke="#33343B" stroke-width="1.4"/>
+<line x1="335" y1="70.9" x2="353" y2="70.9" stroke="#33343B" stroke-width="1.4"/>
+<line x1="335" y1="87.9" x2="353" y2="87.9" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="328" cy="75.1" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="336" cy="69.4" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="344" cy="85.8" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="352" cy="76.2" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="360" cy="90.3" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="344" y="61.9" text-anchor="middle">3.37</text>
+<text class="sdl" x="344" y="71.9" text-anchor="middle">±0.15</text>
+<text class="xl" x="344" y="288" text-anchor="middle">0618-2</text>
+<text class="xs" x="344" y="303" text-anchor="middle">이가녹스 1010 0.05%</text>
+<rect x="467" y="93.6" width="66" height="176.4" rx="3" fill="#159A8A" opacity="0.88"/>
+<line x1="500" y1="84.8" x2="500" y2="102.4" stroke="#33343B" stroke-width="1.4"/>
+<line x1="491" y1="84.8" x2="509" y2="84.8" stroke="#33343B" stroke-width="1.4"/>
+<line x1="491" y1="102.4" x2="509" y2="102.4" stroke="#33343B" stroke-width="1.4"/>
+<circle cx="484" cy="81.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="492" cy="103.9" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="500" cy="92.0" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="508" cy="100.5" r="2.4" fill="#1A1330" opacity="0.45"/>
+<circle cx="516" cy="89.8" r="2.4" fill="#1A1330" opacity="0.45"/>
+<text class="val" x="500" y="75.8" text-anchor="middle">3.12</text>
+<text class="sdl" x="500" y="85.8" text-anchor="middle">±0.16</text>
+<text class="xl" x="500" y="288" text-anchor="middle">0619-1</text>
+<text class="xs" x="500" y="303" text-anchor="middle">이가녹스 1010 0.075%</text>
+<line x1="344" y1="54" x2="500" y2="54" stroke="#33343B" stroke-width="1.1"/>
+<line x1="344" y1="54" x2="344" y2="60" stroke="#33343B" stroke-width="1.1"/>
+<line x1="500" y1="54" x2="500" y2="60" stroke="#33343B" stroke-width="1.1"/>
+<text class="sig" x="422" y="50" text-anchor="middle">* p=0.039 (Tukey)</text>
+</svg><div class="chartcap">탄성계수. 막대=평균, 오차막대=±SD, 점=개별 시편. * = 0.05% vs 0.075% Tukey 유의(p=0.039).</div></div>
+</section>
+
+<section>
+<div class="tag">05 · 해석 · 결론</div>
+<h2>이가녹스 1010 효과는 미미·미확정</h2>
+<ul class="k">
+<li><b>굴곡강도:</b> omnibus는 경계 유의(p=0.041)이나, 사후 Tukey에서 어떤 쌍도 유의하지 않았고(최근접 0617-1 vs 0619-1 p=0.052), 이분산 robust 검정도 비유의(p=0.144). <b>0 wt%와 0.05 wt%는 사실상 동일</b>(평균차 −0.53 MPa)이며, 0.075 wt%에서만 약 4.9 MPa(~4%) 낮은 약한 하향 경향이 관찰됨 — 통계적으로 미확정.</li>
+<li><b>탄성계수:</b> omnibus 경계 유의(p=0.048). 다만 유의한 쌍은 <b>0.05% vs 0.075%(비단조)</b> 하나뿐이고 0 wt% 대비로는 모두 비유의, robust 검정도 비유의(p=0.113). 첨가량에 따른 단조 경향은 확인되지 않음(3.25 → 3.37 → 3.12 GPa).</li>
+<li><b>검정력 한계:</b> n=5로 효과크기(η²≈0.4)는 커 보여도 추정 정밀도가 낮음. 경계 p값들은 반복 측정(n↑) 전 확정 근거로 쓰기 어려움(가설 수준).</li>
+</ul>
+<div class="box takeaway">
+<b>핵심.</b> 이가녹스 1010 0 ~ 0.05 wt%는 굴곡강도·탄성계수를 통계적으로 바꾸지 않음. 0.075 wt%에서 굴곡강도 약한 하향 신호가 있으나 다중비교·robust 기준으로 미확정. 따라서 <b>이가녹스 1010 첨가량은 강도가 아니라 방치·재분산 안정성과 출력 신뢰성 관점에서 선택</b>하는 것이 합리적(0.05 wt%: 강도 최상위 동급 + 안정성 확보, 0.10 wt%는 출력 실패 빈도↑로 제외).
+</div>
+<div class="box warn">
+<b>재료 방향.</b> 세 조성 모두 굴곡강도 113~118 MPa로 인증 최소 80 MPa는 통과하나 최종 목표 175 MPa, 그리고 크라운용 탄성계수(통상 6~10 GPa)에는 미달. 이 한계는 이가녹스 1010이 아니라 <b>필러 충전율(~24.8 wt%·~12 vol%)</b>에서 비롯된 것으로 봄(가설). 두 물성 동반 상향은 Ba-glass 충전율↑이 선행 조건.
+</div>
+</section>
+
+<div class="foot">출처: Google Sheet 3-point bending (0617-1·0618-2·0619-1, n=5). 통계: one-way ANOVA, Levene, Tukey HSD, Alexander–Govern(SciPy/statsmodels). 단위 환산 1 kgf/mm² = 9.80665 MPa. · 미기재 항목: 시편 치수(b·h·L)·지지간 거리·크로스헤드 속도(기록 필요). · gloud 연구노트</div>
+</div></body></html>
