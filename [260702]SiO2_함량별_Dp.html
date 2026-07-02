@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0625 Cure depth — 두 관점</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:#1A1330;background:#F4F2FA;line-height:1.62;word-break:keep-all;overflow-x:hidden}
+.wrap{max-width:860px;margin:0 auto;background:#fff;box-shadow:0 1px 30px rgba(40,20,90,.06)}
+.hero{position:relative;background:linear-gradient(135deg,#7132F5,#4D1FB0);color:#fff;padding:38px 44px 30px;overflow:hidden}
+.hero .blob{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.22),transparent 70%)}
+.logo{font-weight:800;font-size:15px;opacity:.92;margin-bottom:14px}.hero h1{font-size:23px;font-weight:800;line-height:1.32}
+.hero .sub{margin-top:10px;font-size:13.5px;opacity:.95;font-weight:500}
+section{padding:28px 44px}section+section{border-top:1px solid #EFECF6}
+.tag{font-size:11px;font-weight:800;letter-spacing:1.4px;color:#7132F5;margin-bottom:8px}h2{font-size:18px;font-weight:800;margin-bottom:4px}
+p{font-size:13.8px;color:#403A54;margin-top:10px}.note{font-size:12.5px;color:#8A8499;margin-top:8px}
+.vars{margin-top:14px;border-collapse:collapse;width:100%;font-size:13px}
+.vars td{padding:9px 11px;border-bottom:1px solid #EFECF6;vertical-align:top}
+.vars td:first-child{font-weight:700;color:#4D1FB0;white-space:nowrap;width:130px}
+.pill{display:inline-block;background:#F6F3FE;border:1px solid #E3DAF8;color:#4D1FB0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px}
+.chartbox{margin-top:14px;background:#fff;border:1px solid #EFECF6;border-radius:10px;padding:10px 6px}
+.chartcap{font-size:11.8px;color:#8A8499;text-align:center;margin:6px 8px}
+.box{margin-top:16px;border-radius:10px;padding:14px 18px;font-size:13.2px;background:#E8F8F1;border:1px solid #B6E8D3}.box b{color:#0B7A52}
+.foot{padding:18px 44px 28px;font-size:11px;color:#A7A2B5;border-top:1px solid #EFECF6}</style></head><body><div class="wrap">
+<div class="hero"><div class="blob"></div><div class="logo">gloud</div>
+<h1>0625 시리즈 Cure depth 도식화<br>변수 3개, 관점 2개</h1>
+<div class="sub">세라믹 24.89 wt% 고정 · Ba-glass ↔ SiO₂ 치환 · 광량 9 mW/cm²</div></div>
+
+<section><div class="tag">변수 정리</div><h2>이 실험의 변수 3개</h2>
+<table class="vars">
+<tr><td>① 조성 (SiO₂ 비율)</td><td>전체 세라믹 24.89 wt%를 100%로 봤을 때 그 안에서 SiO₂가 차지하는 비율. <b>0625-1 = 0%</b>(전부 Ba-glass) → <b>0625-5 = 100%</b>(전부 SiO₂). <span class="pill">조성 변수</span></td></tr>
+<tr><td>② 노광량</td><td>경화 시 준 빛의 양(UV dose). 경화시간 1.0/1.2/1.5/2.0/5.0 s = <b>9.0 / 10.8 / 13.5 / 18.0 / 45.0 mJ/cm²</b>. <span class="pill">공정 변수</span></td></tr>
+<tr><td>③ Cure depth</td><td>빛이 침투해 굳은 깊이(degree of penetration, µm). <b>측정 결과값(y).</b> <span class="pill">결과</span></td></tr>
+</table>
+<p class="note">→ 결과값(③)은 하나인데 이를 좌우하는 축이 둘(①·②)이라 헷갈림. 그래서 x축을 ①로 둔 그림과 ②로 둔 그림, 두 관점으로 나눠 봄. 두 그림은 같은 데이터입니다.</p>
+</section>
+
+<section><div class="tag">관점 A</div><h2>x축 = SiO₂ 비율 · 곡선 = 노광량</h2>
+<p>“필러 비율이 바뀌면 cure depth가 어떻게 변하나?” — 노광량별로 한 곡선씩.</p>
+<div class="chartbox"><svg viewBox="0 0 470 412" xmlns="http://www.w3.org/2000/svg">
+<rect x="64" y="14" width="378" height="60" rx="7" fill="#FaF9FE" stroke="#E3DAF8" stroke-width="1"/>
+<text x="76" y="31" font-size="10.5" font-weight="700" fill="#4D1FB0">선 = 노광량 (경화시간)  ·  진할수록 높은 노광량</text>
+<line x1="78" y1="48" x2="96" y2="48" stroke="#C8B8F0" stroke-width="2.4"/>
+<circle cx="87.0" cy="48.0" r="3.2" fill="#C8B8F0" stroke="#C8B8F0"/>
+<text x="102" y="51.5" font-size="9.8" fill="#5B5570">9 mJ/cm² (1s)</text>
+<line x1="204" y1="48" x2="222" y2="48" stroke="#9B7BE8" stroke-width="2.4"/>
+<circle cx="213.0" cy="48.0" r="3.2" fill="#9B7BE8" stroke="#9B7BE8"/>
+<text x="228" y="51.5" font-size="9.8" fill="#5B5570">10.8 mJ/cm² (1.2s)</text>
+<line x1="330" y1="48" x2="348" y2="48" stroke="#6A3DE0" stroke-width="2.4"/>
+<circle cx="339.0" cy="48.0" r="3.2" fill="#6A3DE0" stroke="#6A3DE0"/>
+<text x="354" y="51.5" font-size="9.8" fill="#5B5570">13.5 mJ/cm² (1.5s)</text>
+<line x1="78" y1="66" x2="96" y2="66" stroke="#3F1D9E" stroke-width="2.4"/>
+<circle cx="87.0" cy="66.0" r="3.2" fill="#3F1D9E" stroke="#3F1D9E"/>
+<text x="102" y="69.5" font-size="9.8" fill="#5B5570">18 mJ/cm² (2s)</text>
+<line x1="204" y1="66" x2="222" y2="66" stroke="#241155" stroke-width="2.4"/>
+<circle cx="213.0" cy="66.0" r="3.2" fill="#241155" stroke="#241155"/>
+<text x="228" y="69.5" font-size="9.8" fill="#5B5570">45 mJ/cm² (5s)</text>
+<line x1="64" y1="350" x2="442" y2="350" stroke="#5B5570" stroke-width="1.3"/>
+<line x1="64" y1="96" x2="64" y2="350" stroke="#5B5570" stroke-width="1.3"/>
+<line x1="64" y1="350.0" x2="442" y2="350.0" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="353.0" font-size="10.5" text-anchor="end" fill="#5B5570">0</text>
+<line x1="64" y1="299.2" x2="442" y2="299.2" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="302.2" font-size="10.5" text-anchor="end" fill="#5B5570">130</text>
+<line x1="64" y1="248.4" x2="442" y2="248.4" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="251.4" font-size="10.5" text-anchor="end" fill="#5B5570">260</text>
+<line x1="64" y1="197.6" x2="442" y2="197.6" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="200.6" font-size="10.5" text-anchor="end" fill="#5B5570">390</text>
+<line x1="64" y1="146.8" x2="442" y2="146.8" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="149.8" font-size="10.5" text-anchor="end" fill="#5B5570">520</text>
+<line x1="64" y1="96.0" x2="442" y2="96.0" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="99.0" font-size="10.5" text-anchor="end" fill="#5B5570">650</text>
+<line x1="84.2" y1="350" x2="84.2" y2="354" stroke="#5B5570" stroke-width="1.2"/>
+<text x="84.2" y="366" font-size="10.5" text-anchor="middle" fill="#5B5570">0</text>
+<line x1="168.6" y1="350" x2="168.6" y2="354" stroke="#5B5570" stroke-width="1.2"/>
+<text x="168.6" y="366" font-size="10.5" text-anchor="middle" fill="#5B5570">25</text>
+<line x1="253.0" y1="350" x2="253.0" y2="354" stroke="#5B5570" stroke-width="1.2"/>
+<text x="253.0" y="366" font-size="10.5" text-anchor="middle" fill="#5B5570">50</text>
+<line x1="337.4" y1="350" x2="337.4" y2="354" stroke="#5B5570" stroke-width="1.2"/>
+<text x="337.4" y="366" font-size="10.5" text-anchor="middle" fill="#5B5570">75</text>
+<line x1="421.8" y1="350" x2="421.8" y2="354" stroke="#5B5570" stroke-width="1.2"/>
+<text x="421.8" y="366" font-size="10.5" text-anchor="middle" fill="#5B5570">100</text>
+<text x="253" y="384" font-size="12" text-anchor="middle" fill="#5B5570">SiO₂ 비율 (전체 세라믹 24.89 wt% 중 %)  ·  0625-1→5</text>
+<text x="18" y="223" font-size="12" text-anchor="middle" fill="#5B5570" transform="rotate(-90 18 223)">Cure depth (µm)</text>
+<path d="M84.2 327.9 L168.6 338.3 L253.0 338.7 L337.4 335.2 L421.8 332.6" fill="none" stroke="#C8B8F0" stroke-width="2"/>
+<line x1="84.2" y1="325.1" x2="84.2" y2="330.6" stroke="#C8B8F0" stroke-width="0.9"/>
+<circle cx="84.2" cy="327.9" r="3.4" fill="#C8B8F0" stroke="#C8B8F0"/>
+<line x1="168.6" y1="336.3" x2="168.6" y2="340.2" stroke="#C8B8F0" stroke-width="0.9"/>
+<circle cx="168.6" cy="338.3" r="3.4" fill="#C8B8F0" stroke="#C8B8F0"/>
+<line x1="253.0" y1="335.7" x2="253.0" y2="341.8" stroke="#C8B8F0" stroke-width="0.9"/>
+<circle cx="253.0" cy="338.7" r="3.4" fill="#C8B8F0" stroke="#C8B8F0"/>
+<line x1="337.4" y1="332.6" x2="337.4" y2="337.8" stroke="#C8B8F0" stroke-width="0.9"/>
+<circle cx="337.4" cy="335.2" r="3.4" fill="#C8B8F0" stroke="#C8B8F0"/>
+<line x1="421.8" y1="329.8" x2="421.8" y2="335.5" stroke="#C8B8F0" stroke-width="0.9"/>
+<circle cx="421.8" cy="332.6" r="3.4" fill="#C8B8F0" stroke="#C8B8F0"/>
+<path d="M84.2 288.3 L168.6 323.1 L253.0 325.3 L337.4 313.5 L421.8 298.3" fill="none" stroke="#9B7BE8" stroke-width="2"/>
+<line x1="84.2" y1="281.4" x2="84.2" y2="295.3" stroke="#9B7BE8" stroke-width="0.9"/>
+<circle cx="84.2" cy="288.3" r="3.4" fill="#9B7BE8" stroke="#9B7BE8"/>
+<line x1="168.6" y1="318.1" x2="168.6" y2="328.0" stroke="#9B7BE8" stroke-width="0.9"/>
+<circle cx="168.6" cy="323.1" r="3.4" fill="#9B7BE8" stroke="#9B7BE8"/>
+<line x1="253.0" y1="320.9" x2="253.0" y2="329.6" stroke="#9B7BE8" stroke-width="0.9"/>
+<circle cx="253.0" cy="325.3" r="3.4" fill="#9B7BE8" stroke="#9B7BE8"/>
+<line x1="337.4" y1="308.7" x2="337.4" y2="318.3" stroke="#9B7BE8" stroke-width="0.9"/>
+<circle cx="337.4" cy="313.5" r="3.4" fill="#9B7BE8" stroke="#9B7BE8"/>
+<line x1="421.8" y1="293.2" x2="421.8" y2="303.4" stroke="#9B7BE8" stroke-width="0.9"/>
+<circle cx="421.8" cy="298.3" r="3.4" fill="#9B7BE8" stroke="#9B7BE8"/>
+<path d="M84.2 250.6 L168.6 265.3 L253.0 288.8 L337.4 275.8 L421.8 264.0" fill="none" stroke="#6A3DE0" stroke-width="2"/>
+<line x1="84.2" y1="239.8" x2="84.2" y2="261.3" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="84.2" cy="250.6" r="3.4" fill="#6A3DE0" stroke="#6A3DE0"/>
+<line x1="168.6" y1="261.0" x2="168.6" y2="269.7" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="168.6" cy="265.3" r="3.4" fill="#6A3DE0" stroke="#6A3DE0"/>
+<line x1="253.0" y1="285.4" x2="253.0" y2="292.2" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="253.0" cy="288.8" r="3.4" fill="#6A3DE0" stroke="#6A3DE0"/>
+<line x1="337.4" y1="269.3" x2="337.4" y2="282.2" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="337.4" cy="275.8" r="3.4" fill="#6A3DE0" stroke="#6A3DE0"/>
+<line x1="421.8" y1="259.7" x2="421.8" y2="268.4" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="421.8" cy="264.0" r="3.4" fill="#6A3DE0" stroke="#6A3DE0"/>
+<path d="M84.2 211.1 L168.6 221.0 L253.0 229.7 L337.4 224.5 L421.8 213.7" fill="none" stroke="#3F1D9E" stroke-width="2"/>
+<line x1="84.2" y1="207.1" x2="84.2" y2="215.0" stroke="#3F1D9E" stroke-width="0.9"/>
+<circle cx="84.2" cy="211.1" r="3.4" fill="#3F1D9E" stroke="#3F1D9E"/>
+<line x1="168.6" y1="216.7" x2="168.6" y2="225.4" stroke="#3F1D9E" stroke-width="0.9"/>
+<circle cx="168.6" cy="221.0" r="3.4" fill="#3F1D9E" stroke="#3F1D9E"/>
+<line x1="253.0" y1="225.0" x2="253.0" y2="234.4" stroke="#3F1D9E" stroke-width="0.9"/>
+<circle cx="253.0" cy="229.7" r="3.4" fill="#3F1D9E" stroke="#3F1D9E"/>
+<line x1="337.4" y1="220.4" x2="337.4" y2="228.6" stroke="#3F1D9E" stroke-width="0.9"/>
+<circle cx="337.4" cy="224.5" r="3.4" fill="#3F1D9E" stroke="#3F1D9E"/>
+<line x1="421.8" y1="210.0" x2="421.8" y2="217.3" stroke="#3F1D9E" stroke-width="0.9"/>
+<circle cx="421.8" cy="213.7" r="3.4" fill="#3F1D9E" stroke="#3F1D9E"/>
+<path d="M84.2 116.0 L168.6 129.4 L253.0 130.3 L337.4 124.2 L421.8 122.9" fill="none" stroke="#241155" stroke-width="2"/>
+<line x1="84.2" y1="106.9" x2="84.2" y2="125.0" stroke="#241155" stroke-width="0.9"/>
+<circle cx="84.2" cy="116.0" r="3.4" fill="#241155" stroke="#241155"/>
+<line x1="168.6" y1="119.6" x2="168.6" y2="139.2" stroke="#241155" stroke-width="0.9"/>
+<circle cx="168.6" cy="129.4" r="3.4" fill="#241155" stroke="#241155"/>
+<line x1="253.0" y1="126.0" x2="253.0" y2="134.6" stroke="#241155" stroke-width="0.9"/>
+<circle cx="253.0" cy="130.3" r="3.4" fill="#241155" stroke="#241155"/>
+<line x1="337.4" y1="119.5" x2="337.4" y2="128.9" stroke="#241155" stroke-width="0.9"/>
+<circle cx="337.4" cy="124.2" r="3.4" fill="#241155" stroke="#241155"/>
+<line x1="421.8" y1="118.8" x2="421.8" y2="127.0" stroke="#241155" stroke-width="0.9"/>
+<circle cx="421.8" cy="122.9" r="3.4" fill="#241155" stroke="#241155"/>
+</svg><div class="chartcap">가로=SiO₂ 비율(0625-1→5), 세로=cure depth(µm). 점=평균, 막대=±SD. 노광량(선) 범례는 그래프 위 박스 참조.</div></div>
+<p class="note">읽는 법: 낮은 노광량(연한 색)일수록 조성에 따른 굴곡이 크고, 특히 1.2 s(10.8 mJ)에서 0625-1(순수 Ba-glass)이 뚜렷이 높음. 고노광량(45 mJ, 진한 색)에서는 다섯 조성이 거의 평평 — 조성 차이가 사라짐.</p>
+</section>
+
+<section><div class="tag">관점 B</div><h2>x축 = 노광량 · 곡선 = 조성</h2>
+<p>“노광량을 올리면 각 조성의 cure depth가 어떻게 자라나?” — 조성별로 한 곡선씩. (이 관점이 working curve와 직접 연결됨: x를 ln으로 바꾸면 직선)</p>
+<div class="chartbox"><svg viewBox="0 0 470 390" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="342" x2="430" y2="342" stroke="#5B5570" stroke-width="1.3"/>
+<line x1="64" y1="40" x2="64" y2="342" stroke="#5B5570" stroke-width="1.3"/>
+<line x1="64" y1="342.0" x2="430" y2="342.0" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="345.0" font-size="10.5" text-anchor="end" fill="#5B5570">0</text>
+<line x1="64" y1="296.2" x2="430" y2="296.2" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="299.2" font-size="10.5" text-anchor="end" fill="#5B5570">100</text>
+<line x1="64" y1="250.5" x2="430" y2="250.5" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="253.5" font-size="10.5" text-anchor="end" fill="#5B5570">200</text>
+<line x1="64" y1="204.7" x2="430" y2="204.7" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="207.7" font-size="10.5" text-anchor="end" fill="#5B5570">300</text>
+<line x1="64" y1="159.0" x2="430" y2="159.0" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="162.0" font-size="10.5" text-anchor="end" fill="#5B5570">400</text>
+<line x1="64" y1="113.2" x2="430" y2="113.2" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="116.2" font-size="10.5" text-anchor="end" fill="#5B5570">500</text>
+<line x1="64" y1="67.5" x2="430" y2="67.5" stroke="#EFECF6" stroke-width="1"/>
+<text x="56" y="70.5" font-size="10.5" text-anchor="end" fill="#5B5570">600</text>
+<line x1="90.1" y1="342" x2="90.1" y2="346" stroke="#5B5570" stroke-width="1.2"/>
+<text x="90.1" y="358" font-size="10.5" text-anchor="middle" fill="#5B5570">9</text>
+<line x1="168.6" y1="342" x2="168.6" y2="346" stroke="#5B5570" stroke-width="1.2"/>
+<text x="168.6" y="358" font-size="10.5" text-anchor="middle" fill="#5B5570">18</text>
+<line x1="247.0" y1="342" x2="247.0" y2="346" stroke="#5B5570" stroke-width="1.2"/>
+<text x="247.0" y="358" font-size="10.5" text-anchor="middle" fill="#5B5570">27</text>
+<line x1="325.4" y1="342" x2="325.4" y2="346" stroke="#5B5570" stroke-width="1.2"/>
+<text x="325.4" y="358" font-size="10.5" text-anchor="middle" fill="#5B5570">36</text>
+<line x1="403.9" y1="342" x2="403.9" y2="346" stroke="#5B5570" stroke-width="1.2"/>
+<text x="403.9" y="358" font-size="10.5" text-anchor="middle" fill="#5B5570">45</text>
+<text x="247" y="376" font-size="12" text-anchor="middle" fill="#5B5570">노광량 UV dose (mJ/cm²)</text>
+<text x="16" y="191" font-size="12" text-anchor="middle" fill="#5B5570" transform="rotate(-90 16 191)">Cure depth (µm)</text>
+<path d="M90.1 316.1 L105.8 269.8 L129.4 225.6 L168.6 179.3 L403.9 68.0" fill="none" stroke="#6A3DE0" stroke-width="2"/>
+<line x1="90.1" y1="312.8" x2="90.1" y2="319.3" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="90.1" cy="316.1" r="3.4" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<line x1="105.8" y1="261.6" x2="105.8" y2="278.0" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="105.8" cy="269.8" r="3.4" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<line x1="129.4" y1="213.0" x2="129.4" y2="238.1" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="129.4" cy="225.6" r="3.4" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<line x1="168.6" y1="174.7" x2="168.6" y2="183.9" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="168.6" cy="179.3" r="3.4" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<line x1="403.9" y1="57.4" x2="403.9" y2="78.6" stroke="#6A3DE0" stroke-width="0.9"/>
+<circle cx="403.9" cy="68.0" r="3.4" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<path d="M90.1 328.3 L105.8 310.5 L129.4 242.9 L168.6 191.0 L403.9 83.7" fill="none" stroke="#159A8A" stroke-width="2"/>
+<line x1="90.1" y1="326.0" x2="90.1" y2="330.6" stroke="#159A8A" stroke-width="0.9"/>
+<circle cx="90.1" cy="328.3" r="3.4" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<line x1="105.8" y1="304.7" x2="105.8" y2="316.3" stroke="#159A8A" stroke-width="0.9"/>
+<circle cx="105.8" cy="310.5" r="3.4" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<line x1="129.4" y1="237.7" x2="129.4" y2="248.0" stroke="#159A8A" stroke-width="0.9"/>
+<circle cx="129.4" cy="242.9" r="3.4" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<line x1="168.6" y1="185.9" x2="168.6" y2="196.1" stroke="#159A8A" stroke-width="0.9"/>
+<circle cx="168.6" cy="191.0" r="3.4" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<line x1="403.9" y1="72.3" x2="403.9" y2="95.2" stroke="#159A8A" stroke-width="0.9"/>
+<circle cx="403.9" cy="83.7" r="3.4" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<path d="M90.1 328.8 L105.8 313.0 L129.4 270.3 L168.6 201.2 L403.9 84.7" fill="none" stroke="#E08A16" stroke-width="2"/>
+<line x1="90.1" y1="325.2" x2="90.1" y2="332.4" stroke="#E08A16" stroke-width="0.9"/>
+<circle cx="90.1" cy="328.8" r="3.4" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<line x1="105.8" y1="307.9" x2="105.8" y2="318.1" stroke="#E08A16" stroke-width="0.9"/>
+<circle cx="105.8" cy="313.0" r="3.4" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<line x1="129.4" y1="266.3" x2="129.4" y2="274.3" stroke="#E08A16" stroke-width="0.9"/>
+<circle cx="129.4" cy="270.3" r="3.4" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<line x1="168.6" y1="195.7" x2="168.6" y2="206.7" stroke="#E08A16" stroke-width="0.9"/>
+<circle cx="168.6" cy="201.2" r="3.4" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<line x1="403.9" y1="79.7" x2="403.9" y2="89.7" stroke="#E08A16" stroke-width="0.9"/>
+<circle cx="403.9" cy="84.7" r="3.4" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<path d="M90.1 324.7 L105.8 299.3 L129.4 255.1 L168.6 195.1 L403.9 77.6" fill="none" stroke="#C0392B" stroke-width="2"/>
+<line x1="90.1" y1="321.7" x2="90.1" y2="327.8" stroke="#C0392B" stroke-width="0.9"/>
+<circle cx="90.1" cy="324.7" r="3.4" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<line x1="105.8" y1="293.7" x2="105.8" y2="304.9" stroke="#C0392B" stroke-width="0.9"/>
+<circle cx="105.8" cy="299.3" r="3.4" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<line x1="129.4" y1="247.5" x2="129.4" y2="262.6" stroke="#C0392B" stroke-width="0.9"/>
+<circle cx="129.4" cy="255.1" r="3.4" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<line x1="168.6" y1="190.2" x2="168.6" y2="199.9" stroke="#C0392B" stroke-width="0.9"/>
+<circle cx="168.6" cy="195.1" r="3.4" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<line x1="403.9" y1="72.1" x2="403.9" y2="83.1" stroke="#C0392B" stroke-width="0.9"/>
+<circle cx="403.9" cy="77.6" r="3.4" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<path d="M90.1 321.7 L105.8 281.5 L129.4 241.3 L168.6 182.4 L403.9 76.1" fill="none" stroke="#2C6FB5" stroke-width="2"/>
+<line x1="90.1" y1="318.3" x2="90.1" y2="325.0" stroke="#2C6FB5" stroke-width="0.9"/>
+<circle cx="90.1" cy="321.7" r="3.4" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<line x1="105.8" y1="275.5" x2="105.8" y2="287.5" stroke="#2C6FB5" stroke-width="0.9"/>
+<circle cx="105.8" cy="281.5" r="3.4" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<line x1="129.4" y1="236.2" x2="129.4" y2="246.4" stroke="#2C6FB5" stroke-width="0.9"/>
+<circle cx="129.4" cy="241.3" r="3.4" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<line x1="168.6" y1="178.1" x2="168.6" y2="186.6" stroke="#2C6FB5" stroke-width="0.9"/>
+<circle cx="168.6" cy="182.4" r="3.4" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<line x1="403.9" y1="71.3" x2="403.9" y2="80.9" stroke="#2C6FB5" stroke-width="0.9"/>
+<circle cx="403.9" cy="76.1" r="3.4" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<line x1="74" y1="44" x2="92" y2="44" stroke="#6A3DE0" stroke-width="2.2"/>
+<circle cx="83.0" cy="44.0" r="3.2" fill="#6A3DE0" stroke="#6A3DE0" stroke-width="1.4"/>
+<text x="98" y="47.5" font-size="10" fill="#5B5570">0625-1 · SiO₂ 0%</text>
+<line x1="74" y1="60" x2="92" y2="60" stroke="#159A8A" stroke-width="2.2"/>
+<circle cx="83.0" cy="60.0" r="3.2" fill="#159A8A" stroke="#159A8A" stroke-width="1.4"/>
+<text x="98" y="63.5" font-size="10" fill="#5B5570">0625-2 · SiO₂ 25%</text>
+<line x1="74" y1="76" x2="92" y2="76" stroke="#E08A16" stroke-width="2.2"/>
+<circle cx="83.0" cy="76.0" r="3.2" fill="#E08A16" stroke="#E08A16" stroke-width="1.4"/>
+<text x="98" y="79.5" font-size="10" fill="#5B5570">0625-3 · SiO₂ 50%</text>
+<line x1="74" y1="92" x2="92" y2="92" stroke="#C0392B" stroke-width="2.2"/>
+<circle cx="83.0" cy="92.0" r="3.2" fill="#C0392B" stroke="#C0392B" stroke-width="1.4"/>
+<text x="98" y="95.5" font-size="10" fill="#5B5570">0625-4 · SiO₂ 75%</text>
+<line x1="74" y1="108" x2="92" y2="108" stroke="#2C6FB5" stroke-width="2.2"/>
+<circle cx="83.0" cy="108.0" r="3.2" fill="#2C6FB5" stroke="#2C6FB5" stroke-width="1.4"/>
+<text x="98" y="111.5" font-size="10" fill="#5B5570">0625-5 · SiO₂ 100%</text></svg><div class="chartcap">가로=노광량(mJ/cm²), 세로=cure depth(µm). 곡선 하나가 조성 하나(0625-1~5). 점=평균, 막대=±SD.</div></div>
+<p class="note">읽는 법: 모든 조성이 노광량↑ → cure depth↑(로그형 증가). 곡선들이 저노광량에서 벌어졌다가 고노광량(45 mJ)에서 한 점으로 수렴.</p>
+</section>
+
+<section><div class="tag">한 줄 정리</div><h2>핵심</h2>
+<div class="box"><b>노광량이 cure depth의 1차 결정 인자</b>이고, SiO₂ 비율은 <b>저노광량에서만</b> 눈에 띄는 2차 효과. 고노광량에서는 조성 차이가 사라짐. 조성 효과를 정량화하려면 관점 B를 ln(E)로 변환한 working curve의 Dp·Ec로 보는 것이 정확(별도 노트).</div>
+</section>
+<div class="foot">출처: Google Sheet 0625-Opaque준비 (Cure depth, 광량 9 mW/cm², n=9). 두 그림은 동일 데이터의 x축 전환. · gloud 연구노트</div>
+</div></body></html>
