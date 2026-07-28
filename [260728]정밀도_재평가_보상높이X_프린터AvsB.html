@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0728 정밀도 재평가 (보상높이 X)</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;color:#1A1330;background:#F4F2FA;line-height:1.62;word-break:keep-all;overflow-x:hidden}
+.wrap{max-width:900px;margin:0 auto;background:#fff;box-shadow:0 1px 30px rgba(40,20,90,.06)}
+.hero{position:relative;background:linear-gradient(135deg,#7132F5,#4D1FB0);color:#fff;padding:38px 44px 30px;overflow:hidden}
+.hero .blob{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.22),transparent 70%)}
+.logo{font-weight:800;font-size:15px;opacity:.92;margin-bottom:14px}.hero h1{font-size:23px;font-weight:800;line-height:1.32}
+.hero .sub{margin-top:10px;font-size:13.5px;opacity:.95;font-weight:500}.meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+.meta span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:600}
+section{padding:28px 44px}section+section{border-top:1px solid #EFECF6}
+.tag{font-size:11px;font-weight:800;letter-spacing:1.4px;color:#7132F5;margin-bottom:8px}h2{font-size:18px;font-weight:800;margin-bottom:4px}h3{font-size:14.5px;font-weight:800;margin-top:20px;color:#4D1FB0}
+p{font-size:13.8px;color:#403A54;margin-top:10px}.note{font-size:12.5px;color:#8A8499;margin-top:8px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:11.6px}th,td{padding:6px 6px;text-align:center;border-bottom:1px solid #EFECF6}
+thead th{background:#7132F5;color:#fff;font-weight:700;border-bottom:none}thead th.g{background:#4D1FB0}td.lh{font-weight:700;color:#4D1FB0}td.hi{font-weight:700;background:#F6F3FE}
+tbody tr:nth-child(even){background:#FAF9FE}
+.k{margin-top:12px;list-style:none}.k li{font-size:13.6px;color:#403A54;padding:5px 0 5px 18px;position:relative;line-height:1.6}
+.k li::before{content:"\2022";color:#7132F5;font-weight:700;position:absolute;left:2px;top:4px}.k li b{color:#1A1330}
+.box{margin-top:16px;border-radius:10px;padding:14px 18px;font-size:13.2px}.takeaway{background:#E8F8F1;border:1px solid #B6E8D3}.takeaway b{color:#0B7A52}
+.warn{background:#FFF6E6;border:1px solid #F3D89A}.warn b{color:#A86A00}
+.chartbox{margin-top:12px;background:#fff;border:1px solid #EFECF6;border-radius:10px;padding:8px}.chartcap{font-size:11.6px;color:#8A8499;text-align:center;margin:6px}
+svg .ax{font-size:10.5px;fill:#8A8499}svg .axt{font-size:11.5px;fill:#5B5570;font-weight:600}svg .xl{font-size:11px;fill:#1A1330;font-weight:600}svg .lg{font-size:11px;fill:#403A54;font-weight:600}
+.foot{padding:18px 44px 28px;font-size:11px;color:#A7A2B5;border-top:1px solid #EFECF6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.stat{background:#F6F3FE;border-radius:10px;padding:14px 16px}.stat .big{font-size:26px;font-weight:800;color:#4D1FB0}.stat .lbl{font-size:11.5px;color:#8A8499;font-weight:600;margin-top:2px}</style></head><body><div class="wrap">
+<div class="hero"><div class="blob"></div>
+<div class="logo">gloud · Research Note</div>
+<h1>0728 출력 정밀도 재평가 — 보상높이 미적용<br>프린터 A vs B · Inlay · x/y축 배치</h1>
+<div class="sub">보상높이 없이 프린터 간·배치 방향별 치수 정밀도를 재평가. 디자인 두께 6종(1.5~12mm) × 15포지션.</div>
+<div class="meta"><span>🟢 실측</span><span>측정일 26/07/28</span><span>조성 0618-2</span><span>경화 1.18s</span><span>광량 9.0 mW/cm²</span><span>서포터 7mm</span><span>단위 mm</span></div>
+</div>
+
+<section>
+<div class="tag">01 · 결론</div>
+<h2>프린터 A가 B보다 3.8배 정밀 — 얇은 피처에서 격차 최대</h2>
+<p>보상높이를 적용하지 않은 조건에서, <b>프린터 A</b>는 전 두께 평균 절대오차 <b>0.89%</b>로 목표(≤2%)를 안정적으로 만족했다. 반면 <b>프린터 B</b>는 평균 <b>3.38%</b>로 목표를 초과했으며, 특히 <b>얇은 피처(1.5~3mm)에서 과성장</b>이 두드러졌다(최대 +10%). 두꺼운 피처(10·12mm)는 두 프린터 모두 오차가 작았다.</p>
+<div class="grid2">
+<div class="stat"><div class="big">0.89%</div><div class="lbl">프린터 A · 평균 절대오차</div></div>
+<div class="stat"><div class="big">3.38%</div><div class="lbl">프린터 B · 평균 절대오차</div></div>
+</div>
+<div class="box takeaway"><b>Takeaway.</b> 보상높이 미적용 시 프린터 A는 그대로 양산 정밀도(≤2%) 충족. 프린터 B는 얇은 피처 과성장 보정(보상높이 또는 노출 튜닝)이 필요하다.</div>
+</section>
+
+<section>
+<div class="tag">02 · 두께별 오차율</div>
+<h2>디자인 두께별 |오차율| — 프린터 × 배치축</h2>
+<div class="chartbox"><svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><line x1="54" y1="242.0" x2="804" y2="242.0" stroke="#EFECF6"/><text class="ax" x="46" y="245.0" text-anchor="end">0</text><line x1="54" y1="199.7" x2="804" y2="199.7" stroke="#EFECF6"/><text class="ax" x="46" y="202.7" text-anchor="end">2</text><line x1="54" y1="157.4" x2="804" y2="157.4" stroke="#EFECF6"/><text class="ax" x="46" y="160.4" text-anchor="end">4</text><line x1="54" y1="115.1" x2="804" y2="115.1" stroke="#EFECF6"/><text class="ax" x="46" y="118.1" text-anchor="end">6</text><line x1="54" y1="72.9" x2="804" y2="72.9" stroke="#EFECF6"/><text class="ax" x="46" y="75.9" text-anchor="end">8</text><line x1="54" y1="30.6" x2="804" y2="30.6" stroke="#EFECF6"/><text class="ax" x="46" y="33.6" text-anchor="end">10</text><text class="axt" x="16" y="131.0" transform="rotate(-90 16 131.0)" text-anchor="middle">|오차율| (%)</text><rect x="66.5" y="227.8" width="23.0" height="14.2" fill="#6A3DE0" rx="1.5"/><rect x="91.5" y="199.7" width="23.0" height="42.3" fill="#9B7BE8" rx="1.5"/><rect x="116.5" y="115.1" width="23.0" height="126.9" fill="#E39A16" rx="1.5"/><rect x="141.5" y="30.6" width="23.0" height="211.4" fill="#F0C169" rx="1.5"/><text class="xl" x="116.5" y="260" text-anchor="middle">1.5mm</text><rect x="191.5" y="220.9" width="23.0" height="21.1" fill="#6A3DE0" rx="1.5"/><rect x="216.5" y="189.1" width="23.0" height="52.9" fill="#9B7BE8" rx="1.5"/><rect x="241.5" y="146.9" width="23.0" height="95.1" fill="#E39A16" rx="1.5"/><rect x="266.5" y="104.6" width="23.0" height="137.4" fill="#F0C169" rx="1.5"/><text class="xl" x="241.5" y="260" text-anchor="middle">2mm</text><rect x="316.5" y="220.9" width="23.0" height="21.1" fill="#6A3DE0" rx="1.5"/><rect x="341.5" y="227.8" width="23.0" height="14.2" fill="#9B7BE8" rx="1.5"/><rect x="366.5" y="171.6" width="23.0" height="70.4" fill="#E39A16" rx="1.5"/><rect x="391.5" y="164.4" width="23.0" height="77.6" fill="#F0C169" rx="1.5"/><text class="xl" x="366.5" y="260" text-anchor="middle">3mm</text><rect x="441.5" y="236.7" width="23.0" height="5.3" fill="#6A3DE0" rx="1.5"/><rect x="466.5" y="226.1" width="23.0" height="15.9" fill="#9B7BE8" rx="1.5"/><rect x="491.5" y="183.9" width="23.0" height="58.1" fill="#E39A16" rx="1.5"/><rect x="516.5" y="194.4" width="23.0" height="47.6" fill="#F0C169" rx="1.5"/><text class="xl" x="491.5" y="260" text-anchor="middle">4mm</text><rect x="566.5" y="233.5" width="23.0" height="8.5" fill="#6A3DE0" rx="1.5"/><rect x="591.5" y="237.8" width="23.0" height="4.2" fill="#9B7BE8" rx="1.5"/><rect x="616.5" y="231.4" width="23.0" height="10.6" fill="#E39A16" rx="1.5"/><rect x="641.5" y="229.3" width="23.0" height="12.7" fill="#F0C169" rx="1.5"/><text class="xl" x="616.5" y="260" text-anchor="middle">10mm</text><rect x="691.5" y="227.8" width="23.0" height="14.2" fill="#6A3DE0" rx="1.5"/><rect x="716.5" y="229.7" width="23.0" height="12.3" fill="#9B7BE8" rx="1.5"/><rect x="741.5" y="235.0" width="23.0" height="7.0" fill="#E39A16" rx="1.5"/><rect x="766.5" y="238.4" width="23.0" height="3.6" fill="#F0C169" rx="1.5"/><text class="xl" x="741.5" y="260" text-anchor="middle">12mm</text><line x1="54" y1="199.7" x2="804" y2="199.7" stroke="#12B886" stroke-dasharray="5 4" stroke-width="1.5"/><text class="lg" x="804" y="194.7" text-anchor="end" fill="#12B886">목표 ≤ 2%</text><rect x="54" y="18" width="10" height="10" fill="#6A3DE0" rx="2"/><text class="lg" x="68" y="27">프린터A · x</text><rect x="164" y="18" width="10" height="10" fill="#9B7BE8" rx="2"/><text class="lg" x="178" y="27">프린터A · y</text><rect x="274" y="18" width="10" height="10" fill="#E39A16" rx="2"/><text class="lg" x="288" y="27">프린터B · x</text><rect x="384" y="18" width="10" height="10" fill="#F0C169" rx="2"/><text class="lg" x="398" y="27">프린터B · y</text></svg><div class="chartcap">그림 1. 디자인 두께별 절대 오차율. 초록 점선 = 목표 2%. 프린터 B(골드)는 얇은 피처에서 급증.</div></div>
+<ul class="k">
+<li><b>프린터 B, 1.5mm:</b> x축 +6.0% / y축 <b>+10.0%</b> — 가장 큰 과성장. 얇을수록 상대 오차 급증.</li>
+<li><b>프린터 A:</b> 전 두께에서 |오차| ≤ 2.5%, 대부분 1% 내외로 평탄.</li>
+<li><b>공통 경향:</b> 두께 증가 → 오차율 감소(10·12mm에서 &lt;1%). 절대 과성장량이 비슷해 상대오차가 얇은 쪽에서 커지는 구조.</li>
+<li><b>배치축:</b> 두 프린터 모두 <b>y축 배치</b>가 x축보다 오차·편차가 약간 큼(특히 B).</li>
+</ul>
+</section>
+
+<section>
+<div class="tag">03 · 상세 데이터</div>
+<h2>포지션 평균 ± SD (n=15) 및 오차율</h2>
+<table><thead><tr><th>목표<br>(mm)</th><th>프린터A·x<br>ave±sd</th><th>프린터A·y<br>ave±sd</th><th>프린터B·x<br>ave±sd</th><th>프린터B·y<br>ave±sd</th><th class="g">A 평균<br>|오차|</th><th class="g">B 평균<br>|오차|</th></tr></thead><tbody><tr><td class="lh">1.5</td><td>1.51±0.04<br><span style="color:#8A8499;font-size:10px">+0.7%</span></td><td class="hi">1.53±0.04<br><span style="color:#8A8499;font-size:10px">+2.0%</span></td><td class="hi">1.59±0.07<br><span style="color:#8A8499;font-size:10px">+6.0%</span></td><td class="hi">1.65±0.09<br><span style="color:#8A8499;font-size:10px">+10.0%</span></td><td class="lh">1.3%</td><td class="hi">8.0%</td></tr><tr><td class="lh">2</td><td>2.02±0.04<br><span style="color:#8A8499;font-size:10px">+1.0%</span></td><td class="hi">2.05±0.04<br><span style="color:#8A8499;font-size:10px">+2.5%</span></td><td class="hi">2.09±0.07<br><span style="color:#8A8499;font-size:10px">+4.5%</span></td><td class="hi">2.13±0.09<br><span style="color:#8A8499;font-size:10px">+6.5%</span></td><td class="lh">1.7%</td><td class="hi">5.5%</td></tr><tr><td class="lh">3</td><td>3.03±0.03<br><span style="color:#8A8499;font-size:10px">+1.0%</span></td><td>3.02±0.03<br><span style="color:#8A8499;font-size:10px">+0.7%</span></td><td class="hi">3.10±0.07<br><span style="color:#8A8499;font-size:10px">+3.3%</span></td><td class="hi">3.11±0.09<br><span style="color:#8A8499;font-size:10px">+3.7%</span></td><td class="lh">0.8%</td><td class="hi">3.5%</td></tr><tr><td class="lh">4</td><td>4.01±0.03<br><span style="color:#8A8499;font-size:10px">+0.2%</span></td><td>4.03±0.02<br><span style="color:#8A8499;font-size:10px">+0.8%</span></td><td class="hi">4.11±0.09<br><span style="color:#8A8499;font-size:10px">+2.8%</span></td><td class="hi">4.09±0.07<br><span style="color:#8A8499;font-size:10px">+2.2%</span></td><td class="lh">0.5%</td><td class="hi">2.5%</td></tr><tr><td class="lh">10</td><td>9.96±0.04<br><span style="color:#8A8499;font-size:10px">-0.4%</span></td><td>9.98±0.02<br><span style="color:#8A8499;font-size:10px">-0.2%</span></td><td>10.05±0.07<br><span style="color:#8A8499;font-size:10px">+0.5%</span></td><td>10.06±0.07<br><span style="color:#8A8499;font-size:10px">+0.6%</span></td><td class="lh">0.3%</td><td class="hi">0.6%</td></tr><tr><td class="lh">12</td><td>11.92±0.06<br><span style="color:#8A8499;font-size:10px">-0.7%</span></td><td>11.93±0.03<br><span style="color:#8A8499;font-size:10px">-0.6%</span></td><td>12.04±0.07<br><span style="color:#8A8499;font-size:10px">+0.3%</span></td><td>12.02±0.07<br><span style="color:#8A8499;font-size:10px">+0.2%</span></td><td class="lh">0.6%</td><td class="hi">0.2%</td></tr></tbody></table>
+<p class="note">음영(연보라) 셀 = |오차율| &gt; 2% (목표 초과). 오차율 = (측정평균 − 목표)/목표 × 100.</p>
+<div class="box warn"><b>주의.</b> 프린터 B의 1.5~3mm 구간은 목표를 크게 초과 → 이 프린터로 얇은 인레이·마진 출력 시 보상 필수. 데이터는 조성 0618-2 기준이며 다른 조성엔 재검증 필요.</div>
+</section>
+
+<div class="foot">gloud Research Note · 데이터 출처: Google Sheets "0728_정밀도 재평가(보상높이 x)" 시트 (실측 🟢) · 측정 26/07/28 · 본 노트는 보상높이 미적용 조건 단일 평가이며, 보상높이 적용본과의 비교는 별도 노트 참조.</div>
+</div></body></html>
