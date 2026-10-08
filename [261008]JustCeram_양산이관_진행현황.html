@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JustCeram 양산이관 · 원료 공급 진행 현황</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style id="css">
+:root{--bg:#F5F6F8;--panel:#FFFFFF;--ink:#17202E;--sub:#5A6475;--line:#DDE1E8;--accent:#3B4FA8;--accent-soft:#E7EAF7;
+--s-done:#1F7A55;--s-done-bg:#E3F3EB;--s-prog:#A86400;--s-prog-bg:#FCF0DC;--s-todo:#6B7280;--s-todo-bg:#EEF0F3;--s-block:#B42318;--s-block-bg:#FDE7E5;--s-chk:#3B4FA8;--s-chk-bg:#E7EAF7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11151C;--panel:#191F29;--ink:#E6E9EF;--sub:#9AA3B2;--line:#2A3240;--accent:#8E9DE6;--accent-soft:#232B45;
+--s-done:#5CC79A;--s-done-bg:#16302A;--s-prog:#F0B35A;--s-prog-bg:#3A2A12;--s-todo:#A3AAB6;--s-todo-bg:#242B36;--s-block:#F2867C;--s-block-bg:#3D1C1A;--s-chk:#9AA8EE;--s-chk-bg:#232B45}}
+:root[data-theme="dark"]{--bg:#11151C;--panel:#191F29;--ink:#E6E9EF;--sub:#9AA3B2;--line:#2A3240;--accent:#8E9DE6;--accent-soft:#232B45;
+--s-done:#5CC79A;--s-done-bg:#16302A;--s-prog:#F0B35A;--s-prog-bg:#3A2A12;--s-todo:#A3AAB6;--s-todo-bg:#242B36;--s-block:#F2867C;--s-block-bg:#3D1C1A;--s-chk:#9AA8EE;--s-chk-bg:#232B45}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 20px 120px}
+header h1{font-size:26px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+header p{margin:0;color:var(--sub);font-size:14px}
+.rel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:24px 0}
+.rel svg{width:100%;height:auto;display:block}
+.rel .n{fill:var(--panel);stroke:var(--ink);stroke-width:1.2}
+.rel .nt{fill:var(--ink);font-size:15px;font-weight:600}
+.rel .ns{fill:var(--sub);font-size:12px}
+.rel .ea{stroke:var(--accent);stroke-width:1.6;fill:none}
+.rel .eb{stroke:var(--s-prog);stroke-width:1.6;fill:none}
+.rel .ec{stroke:var(--sub);stroke-width:1.2;fill:none;stroke-dasharray:5 4}
+.rel .la{fill:var(--accent);font-size:12px;font-weight:500}
+.rel .lb{fill:var(--s-prog);font-size:12px;font-weight:500}
+.rel .lc{fill:var(--sub);font-size:12px}
+.track{margin-top:36px}
+.th{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:6px}
+.th h2{font-size:19px;font-weight:600;margin:0}
+.th .d{color:var(--sub);font-size:13px}
+.bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--s-todo-bg);margin:10px 0 6px}
+.bar span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--sub);margin-bottom:12px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:0}
+.rows{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.row{display:grid;grid-template-columns:52px minmax(0,1.3fr) 128px minmax(0,1.4fr);gap:14px;padding:14px 16px;border-top:1px solid var(--line);align-items:start}
+.row:first-child{border-top:0}
+.row.dirty{background:var(--accent-soft)}
+.id{font-weight:600;font-size:14px;color:var(--accent);padding-top:6px}
+.nm{font-weight:500}
+.ow{font-size:12px;color:var(--sub);margin-top:2px}
+.cr{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.5}
+.cr b{font-weight:500;color:var(--ink)}
+select,textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px}
+select{width:100%;padding:6px 8px;font-size:13.5px;font-weight:500;appearance:none;-webkit-appearance:none;cursor:pointer}
+select[data-s="done"]{color:var(--s-done);background:var(--s-done-bg);border-color:transparent}
+select[data-s="prog"]{color:var(--s-prog);background:var(--s-prog-bg);border-color:transparent}
+select[data-s="todo"]{color:var(--s-todo);background:var(--s-todo-bg);border-color:transparent}
+select[data-s="block"]{color:var(--s-block);background:var(--s-block-bg);border-color:transparent}
+select[data-s="chk"]{color:var(--s-chk);background:var(--panel);border:1px dashed var(--s-chk)}
+textarea{width:100%;min-height:58px;padding:7px 9px;font-size:13.5px;resize:vertical;line-height:1.5}
+.dt{font-size:11.5px;color:var(--sub);margin-top:4px}
+select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dec .row{grid-template-columns:52px minmax(0,1.3fr) 128px minmax(0,1.4fr)}
+.log{margin-top:36px}
+.log h2{font-size:17px;font-weight:600;margin:0 0 10px}
+.log ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.log li{padding:4px 0 10px 14px;font-size:13.5px}
+.log li span{color:var(--sub);font-size:12px;display:block}
+.save{position:fixed;left:0;right:0;bottom:0;padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:center;gap:14px;align-items:center}
+.save[hidden]{display:none}
+.save .msg{font-size:14px;color:var(--sub)}
+button{font:inherit;font-weight:500;border:0;border-radius:8px;padding:9px 18px;cursor:pointer}
+.b1{background:var(--accent);color:#fff}
+.b2{background:transparent;color:var(--sub);border:1px solid var(--line)}
+button:disabled{opacity:.5;cursor:default}
+.note{font-size:12.5px;color:var(--sub);margin-top:28px}
+@media (max-width:760px){.row,.dec .row{grid-template-columns:44px minmax(0,1fr)}.row>.st,.row>.mm{grid-column:2}header h1{font-size:22px}}
+
+body,.wrap,header,.th,.legend,.row,.row>div,.log,.note,.save{text-align:center}
+.th,.legend{justify-content:center}
+select{text-align:center;text-align-last:center}
+textarea{text-align:center}
+.log ul{border-left:0}
+.log li{padding:4px 0 10px}
+
+.docs{grid-column:1/-1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.dh{display:flex;justify-content:center;gap:12px;font-size:13px;font-weight:500;margin-bottom:6px}
+.dh .dc{color:var(--sub);font-weight:400}
+.dg{display:grid;grid-template-columns:minmax(0,1.4fr) 120px minmax(0,1.4fr) 56px;gap:6px 8px;align-items:center}
+.dgh{font-size:11.5px;color:var(--sub)}
+.dg input{width:100%;font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:5px 8px;text-align:center}
+.dg select{font-size:12.5px;padding:5px 6px}
+.dx{background:transparent;color:var(--sub);border:1px solid var(--line);padding:4px 8px;font-size:12px}
+.dadd{margin-top:8px;background:transparent;color:var(--accent);border:1px dashed var(--accent);padding:5px 14px;font-size:12.5px}
+.dsum{font-weight:500;color:var(--ink)}
+@media (max-width:760px){.dg{grid-template-columns:1fr 1fr}.dgh{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>JustCeram 양산이관 · 원료 공급 진행 현황</h1>
+<p id="upd"></p>
+</header>
+<div class="rel">
+<svg viewBox="0 0 760 210" role="img" aria-label="글라우드, 케미다임, MOP 3사 관계도">
+<defs>
+<marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--accent)"/></marker>
+<marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--s-prog)"/></marker>
+<marker id="mc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--sub)"/></marker>
+</defs>
+<rect class="n" x="20" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="105" y="60" text-anchor="middle">글라우드</text>
+<text class="ns" x="105" y="82" text-anchor="middle">레시피 보유 · 법적 책임</text>
+<rect class="n" x="295" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="380" y="60" text-anchor="middle">케미다임</text>
+<text class="ns" x="380" y="82" text-anchor="middle">이관 대상 · 원료 QC</text>
+<rect class="n" x="570" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="655" y="60" text-anchor="middle">MOP</text>
+<text class="ns" x="655" y="82" text-anchor="middle">현 등록 제조소 · 제조</text>
+<path class="ea" d="M192 54 L291 54" marker-end="url(#ma)"/>
+<text class="la" x="242" y="44" text-anchor="middle">A 양산이관</text>
+<path class="eb" d="M467 54 L566 54" marker-end="url(#mb)"/>
+<text class="lb" x="517" y="44" text-anchor="middle">B QC 원료 공급</text>
+<path class="ec" d="M105 102 L105 160 L655 160 L655 104" marker-end="url(#mc)"/>
+<text class="lc" x="380" y="182" text-anchor="middle">제조 위탁 (현행 유지, MOP 이관 완료 전제)</text>
+</svg>
+</div>
+<div id="tracks"></div>
+<section class="track dec">
+<div class="th"><h2>결정이 필요한 사항</h2><span class="d">답에 따라 트랙 A·B의 범위가 달라집니다</span></div>
+<div class="rows" id="decs"></div>
+</section>
+<section class="log"><h2>변경 이력</h2><ul id="log"></ul></section>
+<p class="note">상태와 메모를 직접 바꾸고, 각 단계의 관련 문서는 문서명·작성 상태·위치를 적어 관리해 주세요. 미리 넣은 문서명은 제안이므로 실제 문서명으로 고치거나 삭제해도 됩니다. "진행 예정"은 계획은 있으나 아직 착수하지 않은 항목입니다. 저장하면 이 페이지의 새 버전이 만들어지고 변경 이력에 남습니다.</p>
+</div>
+<div class="save" id="save" hidden>
+<span class="msg" id="msg"></span>
+<button class="b2" id="cancel" type="button">되돌리기</button>
+<button class="b1" id="go" type="button">변경 사항 저장</button>
+</div>
+<script id="tpl-body" type="text/plain"><div class="wrap">
+<header>
+<h1>JustCeram 양산이관 · 원료 공급 진행 현황</h1>
+<p id="upd"></p>
+</header>
+<div class="rel">
+<svg viewBox="0 0 760 210" role="img" aria-label="글라우드, 케미다임, MOP 3사 관계도">
+<defs>
+<marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--accent)"/></marker>
+<marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--s-prog)"/></marker>
+<marker id="mc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9z" fill="var(--sub)"/></marker>
+</defs>
+<rect class="n" x="20" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="105" y="60" text-anchor="middle">글라우드</text>
+<text class="ns" x="105" y="82" text-anchor="middle">레시피 보유 · 법적 책임</text>
+<rect class="n" x="295" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="380" y="60" text-anchor="middle">케미다임</text>
+<text class="ns" x="380" y="82" text-anchor="middle">이관 대상 · 원료 QC</text>
+<rect class="n" x="570" y="30" width="170" height="70" rx="10"/>
+<text class="nt" x="655" y="60" text-anchor="middle">MOP</text>
+<text class="ns" x="655" y="82" text-anchor="middle">현 등록 제조소 · 제조</text>
+<path class="ea" d="M192 54 L291 54" marker-end="url(#ma)"/>
+<text class="la" x="242" y="44" text-anchor="middle">A 양산이관</text>
+<path class="eb" d="M467 54 L566 54" marker-end="url(#mb)"/>
+<text class="lb" x="517" y="44" text-anchor="middle">B QC 원료 공급</text>
+<path class="ec" d="M105 102 L105 160 L655 160 L655 104" marker-end="url(#mc)"/>
+<text class="lc" x="380" y="182" text-anchor="middle">제조 위탁 (현행 유지, MOP 이관 완료 전제)</text>
+</svg>
+</div>
+<div id="tracks"></div>
+<section class="track dec">
+<div class="th"><h2>결정이 필요한 사항</h2><span class="d">답에 따라 트랙 A·B의 범위가 달라집니다</span></div>
+<div class="rows" id="decs"></div>
+</section>
+<section class="log"><h2>변경 이력</h2><ul id="log"></ul></section>
+<p class="note">상태와 메모를 직접 바꾸고, 각 단계의 관련 문서는 문서명·작성 상태·위치를 적어 관리해 주세요. 미리 넣은 문서명은 제안이므로 실제 문서명으로 고치거나 삭제해도 됩니다. "진행 예정"은 계획은 있으나 아직 착수하지 않은 항목입니다. 저장하면 이 페이지의 새 버전이 만들어지고 변경 이력에 남습니다.</p>
+</div>
+<div class="save" id="save" hidden>
+<span class="msg" id="msg"></span>
+<button class="b2" id="cancel" type="button">되돌리기</button>
+<button class="b1" id="go" type="button">변경 사항 저장</button>
+</div></script>
+<script id="state" type="application/json">{"meta":{"created":"2026-10-08","updated":"2026-10-08"},"tracks":[{"id":"A","name":"트랙 A · 케미다임 양산이관","desc":"케미다임이 향후 직접 제조할 수 있도록 준비","items":[{"id":"A1","name":"레시피 고정 · 기술이전 패키지","owner":"글라우드","criteria":"조성·원료 규격·공정 조건·합격 기준 문서를 케미다임이 수령·확인","status":"done","memo":"기술이전 패키지 케미다임 전달 완료","date":"","docs":[{"id":"d01","name":"기술이전 패키지","status":"sent","note":""}]},{"id":"A2","name":"생산처 선정 · 계약 · 품질협정","owner":"글라우드 · 케미다임","criteria":"OEM 계약서와 품질협정서 서명 완료","status":"prog","memo":"OEM 계약서 진행 중. 품질협정 지연: 케미다임에서 만든 A3 셰이드 시료가 색상 불일치 피드백을 받았으며, 원인이 랩스케일 조성 단계인지 케미다임 제조 과정인지 아직 미확인. 원인 확인 후 품질협정 가능 → 10월 셋째 주부터 원인 조사 착수 예정. QC 기준 수립 계획: ① 랩스케일 3회 제조 → 케미다임 장비로 평가 ② 이관 중 제조 배치(사내 프린터 출력 샘플용)도 매 배치 평가 → ①과 비교해 기준 설정","date":"","docs":[{"id":"d02","name":"OEM 계약서","status":"draft","note":""},{"id":"d03","name":"품질협정서","status":"plan","note":"A3 셰이드 색상 원인 확인 후 작성"},{"id":"d04","name":"제품 QC 기준(안)","status":"draft","note":"랩스케일 3회 + 이관 배치 평가 결과 비교"},{"id":"d05","name":"A3 셰이드 색상 불일치 원인 조사 보고","status":"plan","note":"10월 셋째 주 착수"}]},{"id":"A3","name":"원료 공급망 확정","owner":"트랙 B와 연동","criteria":"원료 공급사·규격 정보를 케미다임과 공유","status":"done","memo":"원료 공급망 정보 케미다임과 공유 완료. 원료 QC 기준(B2)·보관/운송(B3)은 트랙 B에서 별도 추적","date":"","docs":[{"id":"d06","name":"원료 공급사 · 규격 목록","status":"sent","note":""}]},{"id":"A4","name":"스케일업 · 시험 생산","owner":"케미다임 (글라우드 입회)","criteria":"목표 배치 규모에서 실험실 제품과 물성 동등성 확인","status":"prog","memo":"현 케미다임 보유 장비보다 한 단계 큰 장비로 업그레이드 검토 중 → 후보 장비 2종 별도 평가. 우선 대용량 페이스트믹서(2 kg) 평가: 이번 주 2조건 시료 제작 → 장비 업체 의뢰, 차주 결과 확보 예정. 목표 월 80 kg (기존 100 kg에서 변경)","date":"","docs":[{"id":"d07","name":"페이스트믹서 2 kg 평가 의뢰 (2조건)","status":"plan","note":"이번 주 시료 제작"},{"id":"d08","name":"업그레이드 후보 장비 2종 평가 결과","status":"plan","note":"차주 결과 확보 예정"}]},{"id":"A5","name":"공정 밸리데이션","owner":"케미다임 · 글라우드","criteria":"확정 공정으로 연속 배치 모두 합격, 보고서 승인","status":"prog","memo":"현 케미다임 보유 장비로 공정 밸리데이션 1회 완료 (총 계획 횟수 미정). 공정안 = 임펠라 교반기로 레진 베이스 제조 → 세라믹 투입 후 페이스트믹서로 최종 혼합. 추가 데이터화 필요: 임펠라 교반 시간·rpm·배합 순서. 장비 업그레이드 확정 시 신규 장비 기준으로 밸리데이션 재수행 대상","date":"","docs":[{"id":"d09","name":"공정 밸리데이션 1회차 기록","status":"plan","note":"1회 완료, 기록 문서 상태 입력 필요"},{"id":"d10","name":"임펠라 교반 조건 평가 계획 (시간 · rpm · 배합 순서)","status":"plan","note":""}]},{"id":"A6","name":"품질관리 체계 구축","owner":"케미다임 · 글라우드","criteria":"제조기록서·출하검사 기준·변경관리 절차 승인","status":"chk","memo":"","date":"","docs":[{"id":"d11","name":"제조기록서 양식","status":"plan","note":""},{"id":"d12","name":"출하검사 기준서","status":"plan","note":""},{"id":"d13","name":"변경관리 절차서","status":"plan","note":""}]},{"id":"A7","name":"인허가 반영","owner":"글라우드","criteria":"제조소 추가 필요 여부 결정, 필요 시 변경 절차 완료","status":"chk","memo":"현재 등록 제조소는 MOP만","date":"","docs":[{"id":"d14","name":"제조소 추가 여부 검토","status":"plan","note":""}]},{"id":"A8","name":"양산 개시 · 초기 안정화","owner":"케미다임","criteria":"첫 양산 배치 출하, 배치별 추이 모니터링 시작","status":"chk","memo":"","date":"","docs":[{"id":"d15","name":"초기 배치 모니터링 기록","status":"plan","note":""}]}]},{"id":"B","name":"트랙 B · 케미다임 QC 원료 → MOP 공급","desc":"케미다임이 검사한 원료로 MOP가 제조","items":[{"id":"B1","name":"3사 역할 · 책임 정의","owner":"글라우드 · 케미다임 · MOP","criteria":"검사·보관·불합격 처리·클레임 책임을 문서로 합의","status":"prog","memo":"인계 진행 중. MOP 1차 발주 시점에 케미다임 방문해 함께 진행: 방문 전 진행 방법을 서면으로 송부 → 방문 시 직접 시연","date":"","docs":[{"id":"d16","name":"인계 진행 방법 안내 (방문 전 서면)","status":"plan","note":"MOP 1차 발주 전 송부"},{"id":"d17","name":"3사 역할 · 책임 정의서","status":"plan","note":""}]},{"id":"B2","name":"원료별 IQC 기준","owner":"글라우드(기준) · 케미다임(시험)","criteria":"전 원료 시험 항목·기준 확정, 케미다임 시험법 확인","status":"prog","memo":"인계 진행 중. MOP 1차 발주 시점에 케미다임 방문해 함께 진행: 방문 전 진행 방법을 서면으로 송부 → 방문 시 직접 시연. 기존 자료: IQC 시트 10종 완료, HDDA·DPHA 미완 / 계약 별지 2 초안 착수. 케미다임 보유 장비: 점도계·UTM·분광기·헤이즈미터","date":"","docs":[{"id":"d18","name":"원료별 IQC 체크시트","status":"draft","note":"10종 완료, HDDA · DPHA 미완"},{"id":"d19","name":"OEM 계약 별지 2 수입검사 기준","status":"draft","note":""}]},{"id":"B3","name":"QC 후 포장 · 보관 · 운송 조건","owner":"케미다임","criteria":"차광·온도·용기·운송 조건 확정","status":"chk","memo":"","date":"","docs":[{"id":"d20","name":"포장 · 보관 · 운송 조건서","status":"plan","note":""}]},{"id":"B4","name":"MOP 입고 확인 절차","owner":"MOP","criteria":"성적서·라벨·외관·유효기간 확인 절차서 승인","status":"chk","memo":"MOP는 분석 장비 없음 → 성적서 확인 중심","date":"","docs":[{"id":"d21","name":"MOP 입고 확인 절차서","status":"plan","note":""}]},{"id":"B5","name":"추적성 체계","owner":"글라우드 · 케미다임 · MOP","criteria":"원료 로트 → 케미다임 QC 번호 → MOP 제조번호 연결 양식","status":"chk","memo":"","date":"","docs":[{"id":"d22","name":"추적성 기록 양식","status":"plan","note":""}]},{"id":"B6","name":"변경관리 · 인허가 확인","owner":"글라우드","criteria":"원료 공급 경로 변경의 신고·변경관리 해당 여부 문서화","status":"chk","memo":"","date":"","docs":[{"id":"d23","name":"변경관리 해당 여부 검토서","status":"plan","note":""}]},{"id":"B7","name":"첫 공급 시범 운영","owner":"글라우드 · 케미다임 · MOP","criteria":"첫 공급 배치로 전 과정 시범 운영, 이슈 정리","status":"chk","memo":"","date":"","docs":[{"id":"d24","name":"시범 운영 결과 보고","status":"plan","note":""}]}]}],"decisions":[{"id":"D1","name":"케미다임이 원료를 원포장 그대로 넘기는가, 소분·재포장하는가","why":"소분하면 B3·B5·B6 관리 항목이 크게 늘어남","status":"chk","memo":"","date":""},{"id":"D2","name":"케미다임을 향후 등록 제조소로 추가할 계획인가","why":"A7 범위와 일정이 이 답으로 정해짐","status":"chk","memo":"","date":""},{"id":"D3","name":"MOP 공용 설비 교차오염 우려 대응","why":"황 화합물 취급 설비 공용 이슈 (기존 기록), MOP 제조 지속 시 필요","status":"chk","memo":"","date":""}],"log":[{"date":"2026-10-08","text":"초안 확정 (관련 문서 칸 포함). 이후 수정 사항만 기록"}]}</script>
+<script id="app">(function(){
+var S=JSON.parse(document.getElementById('state').textContent);
+var ORIG=JSON.stringify(S);
+var ST={done:'완료',prog:'진행 중',todo:'미착수',block:'이슈 · 보류',chk:'진행 예정'};
+var COL={done:'var(--s-done)',prog:'var(--s-prog)',block:'var(--s-block)',chk:'repeating-linear-gradient(45deg,var(--s-chk) 0 2px,var(--s-chk-bg) 2px 6px)',todo:'var(--s-todo)'};
+var DS={plan:'작성 예정',draft:'작성 중',review:'검토 중',done:'완료',sent:'송부 완료'};
+var DSK={plan:'chk',draft:'prog',review:'prog',done:'done',sent:'done'};
+var dirty={};var cap=null;var readOnly=false;
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+function fit(t){t.style.height='auto';t.style.height=Math.max(58,t.scrollHeight+2)+'px'}
+function nid(){return 'd'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function docsBlock(it,r){
+  var w=el('div','docs');
+  var hd=el('div','dh');hd.appendChild(el('span',null,'관련 문서'));
+  var n=(it.docs||[]).length,k=(it.docs||[]).filter(function(d){return d.status==='done'||d.status==='sent'}).length;
+  hd.appendChild(el('span','dc',n?('완료 '+k+' / '+n):'등록된 문서 없음'));w.appendChild(hd);
+  if(n){var g=el('div','dg');
+    ['문서명','작성 상태','위치 · 비고',''].forEach(function(h){g.appendChild(el('div','dgh',h))});
+    it.docs.forEach(function(d,ix){
+      var nm=el('input');nm.type='text';nm.value=d.name;nm.placeholder='문서명';nm.readOnly=readOnly;nm.setAttribute('aria-label',it.id+' 문서명');
+      nm.addEventListener('input',function(){d.name=nm.value;touch(it,r)});
+      var sel=el('select');Object.keys(DS).forEach(function(x){var o=el('option',null,DS[x]);o.value=x;if(x===d.status)o.selected=true;sel.appendChild(o)});
+      sel.dataset.s=DSK[d.status];sel.disabled=readOnly;sel.setAttribute('aria-label',it.id+' '+d.name+' 작성 상태');
+      sel.addEventListener('change',function(){d.status=sel.value;sel.dataset.s=DSK[sel.value];touch(it,r);refreshCount(it,w)});
+      var nt=el('input');nt.type='text';nt.value=d.note||'';nt.placeholder='파일 위치, 송부일, 버전 등';nt.readOnly=readOnly;nt.setAttribute('aria-label',it.id+' 문서 비고');
+      nt.addEventListener('input',function(){d.note=nt.value;touch(it,r)});
+      var x=el('button','dx','삭제');x.type='button';x.disabled=readOnly;x.setAttribute('aria-label',d.name+' 삭제');
+      x.addEventListener('click',function(){it.docs.splice(ix,1);touch(it,r);rerow(it,r)});
+      [nm,sel,nt,x].forEach(function(e){var c=el('div','dcell');c.appendChild(e);g.appendChild(c)});
+    });w.appendChild(g)}
+  var add=el('button','dadd','+ 문서 추가');add.type='button';add.disabled=readOnly;
+  add.addEventListener('click',function(){it.docs=it.docs||[];it.docs.push({id:nid(),name:'',status:'plan',note:''});touch(it,r);rerow(it,r);var ins=document.querySelectorAll('[aria-label="'+it.id+' 문서명"]');if(ins.length)ins[ins.length-1].focus()});
+  w.appendChild(add);return w}
+function refreshCount(it,w){var n=it.docs.length,k=it.docs.filter(function(d){return d.status==='done'||d.status==='sent'}).length;w.querySelector('.dc').textContent=n?('완료 '+k+' / '+n):'등록된 문서 없음';sum()}
+function rerow(it,r){var nr=row(it,!it.owner&&it.why!=null);r.replaceWith(nr)}
+function row(it,isDec){
+  var r=el('div','row'+(dirty[it.id]?' dirty':''));
+  r.appendChild(el('div','id',it.id));
+  var m=el('div');m.appendChild(el('div','nm',it.name));
+  if(!isDec)m.appendChild(el('div','ow',it.owner));
+  var c=el('div','cr');c.appendChild(el('b',null,isDec?'왜 중요한가 ':'완료 기준 '));c.appendChild(document.createTextNode(isDec?it.why:it.criteria));m.appendChild(c);r.appendChild(m);
+  var s=el('div','st');var sel=el('select');sel.setAttribute('aria-label',it.id+' 상태');
+  Object.keys(ST).forEach(function(k){var o=el('option',null,ST[k]);o.value=k;if(k===it.status)o.selected=true;sel.appendChild(o)});
+  sel.dataset.s=it.status;sel.disabled=readOnly;
+  sel.addEventListener('change',function(){it.status=sel.value;sel.dataset.s=sel.value;touch(it,r)});
+  s.appendChild(sel);s.appendChild(el('div','dt',it.date?('갱신 '+it.date+(dirty[it.id]?' (저장 전)':'')):'초안 이후 변경 없음'));r.appendChild(s);
+  var mm=el('div','mm');var ta=el('textarea');ta.value=it.memo;ta.placeholder=isDec?'결정 내용·결정자·날짜':'진행 내용·다음 할 일';ta.setAttribute('aria-label',it.id+' 메모');ta.readOnly=readOnly;
+  ta.addEventListener('input',function(){it.memo=ta.value;touch(it,r);fit(ta)});
+  mm.appendChild(ta);r.appendChild(mm);requestAnimationFrame(function(){fit(ta)});
+  if(!isDec)r.appendChild(docsBlock(it,r));
+  return r}
+function touch(it,r){it.date=today();dirty[it.id]=true;r.classList.add('dirty');var dt=r.querySelector('.dt');if(dt)dt.textContent='갱신 '+it.date+' (저장 전)';bar();sum()}
+function sum(){
+  document.querySelectorAll('[data-sum]').forEach(function(box){
+    var t=S.tracks.filter(function(x){return x.id===box.dataset.sum})[0];var n=t.items.length;var cnt={};
+    t.items.forEach(function(i){cnt[i.status]=(cnt[i.status]||0)+1});
+    var barE=box.querySelector('.bar');barE.innerHTML='';
+    ['done','prog','block','chk'].forEach(function(k){if(cnt[k]){var sp=el('span');sp.style.width=(cnt[k]/n*100)+'%';sp.style.background=COL[k];sp.title=ST[k]+' '+cnt[k];barE.appendChild(sp)}});
+    var lg=box.querySelector('.legend');lg.innerHTML='';
+    Object.keys(ST).forEach(function(k){var s=el('span');var i=el('i');i.style.background=COL[k];s.appendChild(i);s.appendChild(document.createTextNode(ST[k]+' '+(cnt[k]||0)));lg.appendChild(s)});
+    var dn=0,dk=0;t.items.forEach(function(i){(i.docs||[]).forEach(function(d){dn++;if(d.status==='done'||d.status==='sent')dk++})});
+    var ds=el('span','dsum','문서 완료 '+dk+' / '+dn);lg.appendChild(ds);
+  })}
+function render(){
+  document.getElementById('upd').textContent='초안 '+S.meta.created+'  ·  최근 저장 '+S.meta.updated;
+  var T=document.getElementById('tracks');T.innerHTML='';
+  S.tracks.forEach(function(t){
+    var sec=el('section','track');var h=el('div','th');h.appendChild(el('h2',null,t.name));h.appendChild(el('span','d',t.desc));sec.appendChild(h);
+    var sb=el('div');sb.dataset.sum=t.id;sb.appendChild(el('div','bar'));sb.appendChild(el('div','legend'));sec.appendChild(sb);
+    var rs=el('div','rows');t.items.forEach(function(it){rs.appendChild(row(it,false))});sec.appendChild(rs);T.appendChild(sec)});
+  var D=document.getElementById('decs');D.innerHTML='';S.decisions.forEach(function(it){D.appendChild(row(it,true))});
+  var L=document.getElementById('log');L.innerHTML='';S.log.slice().reverse().forEach(function(g){var li=el('li');li.appendChild(el('span',null,g.date));li.appendChild(document.createTextNode(g.text));L.appendChild(li)});
+  sum();bar()}
+function bar(){var n=Object.keys(dirty).length;var b=document.getElementById('save');b.hidden=n===0;document.getElementById('msg').textContent='변경 '+n+'건';}
+function all(){var a=[];S.tracks.forEach(function(t){a=a.concat(t.items)});return a.concat(S.decisions)}
+function build(){
+  var css=document.getElementById('css').textContent;var app=document.getElementById('app').textContent;
+  var body=document.getElementById('tpl-body').textContent;
+  var json=JSON.stringify(S).replace(/</g,'\\u003c');
+  return '<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>JustCeram 양산이관 · 원료 공급 진행 현황</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">\n<style id="css">'+css+'</style>\n</head>\n<body>\n'+body+'\n<script id="state" type="application/json">'+json+'<\/script>\n<script id="tpl-body" type="text/plain">'+body+'<\/script>\n<script id="app">'+app+'<\/script>\n</body>\n</html>'}
+function diff(p,i){
+  var out=[];
+  if(!p)return [i.id+' 추가'];
+  if(p.status!==i.status)out.push(i.id+' '+ST[p.status]+' → '+ST[i.status]);
+  if(p.memo!==i.memo)out.push(i.id+' 메모 수정');
+  var pd={};(p.docs||[]).forEach(function(d){pd[d.id]=d});var seen={};
+  (i.docs||[]).forEach(function(d){var o=pd[d.id];seen[d.id]=1;var nm=d.name||'(이름 없음)';
+    if(!o){out.push(i.id+' 문서 추가: '+nm+' ('+DS[d.status]+')');return}
+    if(o.status!==d.status)out.push(i.id+' '+nm+' '+DS[o.status]+' → '+DS[d.status]);
+    if(o.name!==d.name)out.push(i.id+' 문서명 변경: '+(o.name||'(이름 없음)')+' → '+nm);
+    else if((o.note||'')!==(d.note||''))out.push(i.id+' '+nm+' 비고 수정')});
+  (p.docs||[]).forEach(function(d){if(!seen[d.id])out.push(i.id+' 문서 삭제: '+(d.name||'(이름 없음)'))});
+  return out}
+document.getElementById('cancel').addEventListener('click',function(){S=JSON.parse(ORIG);dirty={};render()});
+document.getElementById('go').addEventListener('click',function(){
+  var btn=this;var msg=document.getElementById('msg');
+  if(!cap){msg.textContent='이 화면에서는 저장할 수 없습니다. claude.ai에서 열어 주세요.';return}
+  var o=JSON.parse(ORIG);var om={};o.tracks.forEach(function(t){t.items.forEach(function(i){om[i.id]=i})});o.decisions.forEach(function(i){om[i.id]=i});
+  var parts=[];all().forEach(function(i){if(dirty[i.id])parts=parts.concat(diff(om[i.id],i))});
+  if(!parts.length){dirty={};render();return}
+  S.meta.updated=today();S.log.push({date:today(),text:parts.join(', ')});if(S.log.length>60)S.log=S.log.slice(-60);
+  btn.disabled=true;msg.textContent='저장 중';
+  cap.publish(build()).then(function(){msg.textContent='저장됨'}).catch(function(e){btn.disabled=false;S.log.pop();
+    var c=e&&e.code;
+    if(c==='conflict'){msg.textContent='다른 사람이 먼저 저장했습니다. 새로고침 후 다시 입력해 주세요'}
+    else if(c==='not_writer'||c==='not_granted'||c==='consent_required'||c==='capability_disabled'){readOnly=true;msg.textContent='읽기 전용 화면이라 저장할 수 없습니다';render()}
+    else if(c==='rate_limited'){msg.textContent='저장이 잦아 잠시 후 다시 눌러 주세요'}
+    else{msg.textContent='저장하지 못했습니다. 잠시 후 다시 시도해 주세요'}})});
+render();
+if(window.claude&&window.claude.use){window.claude.use('artifact').then(function(a){cap=a}).catch(function(){})}
+})();
+</script>
+</body>
+</html>
