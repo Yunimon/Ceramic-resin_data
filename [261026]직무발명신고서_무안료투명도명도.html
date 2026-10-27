@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>직무발명 신고서(안) — 자연치 유사 투명도·명도 구현 세라믹 하이브리드 레진</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F6F9; --paper: #FFFFFF; --ink: #101114; --body: #3E4152; --muted: #8A8D9E;
+  --line: #DEDEE5; --stripe: #F7F5FD;
+  --p1: #5B3A9E; --p2: #A26FE0; --pur: #7132F5; --pur-ink: #4D1FB0; --pur-tint: #EFE9FD;
+  --green-ink: #026B3F; --green-tint: #E3F4EB; --orange-ink: #9A4A00; --orange-tint: #FFF3E6; --orange-line: #F2B36B;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121218; --paper: #1B1B23; --ink: #F1F1F5; --body: #C9CAD6; --muted: #8E91A3;
+    --line: #2F2F3B; --stripe: #22202E;
+    --pur: #A88BFF; --pur-ink: #CDBBFF; --pur-tint: #2A2340;
+    --green-ink: #7FD9AE; --green-tint: #17302A; --orange-ink: #FFC98A; --orange-tint: #33261A; --orange-line: #8A5A22;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--body);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 15px; line-height: 1.75; }
+.hero { background: linear-gradient(120deg, var(--p1), var(--p2)); color: #fff; padding: 56px 24px 48px; }
+.hero-in, main { max-width: 920px; margin: 0 auto; }
+.hero .kind { font-size: 14px; font-weight: 700; opacity: .85; margin: 0 0 10px; }
+.hero h1 { font-size: 30px; line-height: 1.35; margin: 0 0 14px; font-weight: 700; }
+.hero .meta { font-size: 14px; opacity: .85; margin: 0; }
+main { background: var(--paper); padding: 40px 48px 56px; margin-top: -24px; border-radius: 14px;
+  box-shadow: 0 1px 0 var(--line); }
+h2 { color: var(--ink); font-size: 21px; margin: 44px 0 14px; padding-bottom: 10px; border-bottom: 2px solid var(--pur-tint); }
+main > h2:first-child { margin-top: 0; }
+h3 { color: var(--ink); }
+p { margin: 0 0 14px; }
+strong { color: var(--ink); }
+ul, ol { padding-left: 22px; margin: 0 0 16px; }
+li { margin: 4px 0; }
+.table-wrap { overflow-x: auto; margin: 6px 0 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+th { background: var(--pur-ink); color: #fff; font-weight: 700; padding: 10px 12px; text-align: left; }
+@media (prefers-color-scheme: dark) { th { background: #4D1FB0; } }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: var(--stripe); }
+td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+.note { font-size: 13px; color: var(--muted); }
+.callout { padding: 14px 18px; border-radius: 10px; border-left: 4px solid; }
+.callout.purple { background: var(--pur-tint); border-color: var(--pur); color: var(--body); }
+.callout.green { background: var(--green-tint); border-color: var(--green-ink); color: var(--body); }
+.warn { background: var(--orange-tint); border: 1px solid var(--orange-line); border-radius: 14px; padding: 6px 24px 14px; margin-top: 44px; }
+.warn h2 { border-bottom-color: var(--orange-line); color: var(--orange-ink); margin-top: 18px; }
+.warn ul { list-style: none; padding-left: 0; }
+.warn li { padding: 8px 0; border-bottom: 1px dashed var(--orange-line); }
+.warn li:last-child { border-bottom: 0; }
+.warn input[type=checkbox] { accent-color: var(--pur); margin-right: 8px; transform: translateY(1px); }
+footer { max-width: 920px; margin: 18px auto 40px; font-size: 13px; color: var(--muted); padding: 0 24px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 18px 40px; } .hero h1 { font-size: 23px; }
+  main { padding: 28px 20px 40px; border-radius: 0; }
+}
+@media print {
+  body { background: #fff; } .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { box-shadow: none; margin-top: 0; } h2 { break-after: avoid; } table, .warn { break-inside: avoid; }
+  th, tbody tr:nth-child(even) td, .callout, .warn { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-in">
+<p class="kind">직무발명 신고서(안)</p>
+<h1>굴절률 차를 이용한 자연치 유사 투명도·명도 구현 세라믹 하이브리드 레진</h1>
+<p class="meta">주식회사 글라우드 소재 R&amp;D팀 · 2026년 10월 26일</p>
+</div></header>
+<main>
+<h2 id="1-발명-개요">1. 발명 개요</h2>
+<p>굴절률·입도가 다른 세라믹 필러 2종(Ba-glass, SiO₂)의 배합비로
+자연치에 가까운 투명도와 명도를 안료 없이 구현하는 광경화성 치과 수복용
+레진 조성물임. 나아가 배합비 설계로 명도(흰색도)를 끌어올려, 백색 안료나
+불투명제 없이도 블리치 셰이드를 구현함.</p>
+<p><strong>발명의 명칭(가안)</strong>: 굴절률이 서로 다른 2종 무기
+필러의 배합비 제어를 통해 자연치 유사 투명도와 명도를 조절하는 광경화성
+치과 수복용 복합 레진 조성물</p>
+<p><strong>발명의 목적</strong></p>
+<ul>
+<li>기존 출력형 치과 레진은 안료를 첨가해 흰색·치아 색조를 구현함.
+안료는 405 nm 광을 흡수해 경화를 방해하며, 사내 평가에서도 안료 색상에
+따라 경화도 차이가 확인됨 (노란색 안료에서 경화 저하가 가장 큼)</li>
+<li>본 발명은 필러 2종의 비율로 레진 내부의 광산란을 조절해 안료 없이
+자연치에 가까운 투명도와 명도를 구현하는 것을 목적으로 함.
+명도(흰색도)를 높이는 방향으로 배합비를 조절하면 블리치 셰이드를 구현할
+수 있음</li>
+<li>동시에 LCD 3D 프린팅에 필요한 점도·경화 특성과 영구 보철물로서 ISO
+기준(ISO 10477 · ISO 4049) 인증이 가능한 수준의 기계적 물성과
+생체적합성을 함께 확보함</li>
+</ul>
+<p><strong>주요 연구내용</strong></p>
+<ul>
+<li>수지 매트릭스·광개시제·총 필러량(약 25 wt%)을 고정하고 Ba-glass(약
+700 nm) : SiO₂(약 100 nm) 비율만 100:0 → 0:100으로 바꾼 5개 조성(A~E)
+설계</li>
+<li>광학 특성: 300~800 nm 투과율, CIELAB 색좌표(L*, a*, b*)</li>
+<li>프린팅 특성: 점도(전단속도별), 노광량별 경화깊이, 출력물 치수
+오차(비니어·인레이·크라운)</li>
+<li>기계적 물성: 굴곡강도·탄성률, 파괴인성·파괴일, 비커스·쇼어 D
+경도</li>
+<li>재료 분석: TGA(필러 함량), XRD, FTIR, SEM/EDS</li>
+<li>생체적합성: 세포 밀도·면적·흡광도 기반 세포독성 평가</li>
+</ul>
+<h2 id="2-핵심기술-및-차별성">2. 핵심기술 및 차별성</h2>
+<p>자연치에 가까운 투명도와 명도를 안료 대신 2종 필러의 배합비로 구현한
+것이 핵심이며, Ba-glass 비율이 높을수록 투명하고 SiO₂ 비율이 높을수록
+희고 불투명해지는 연속적인 조절 범위를 실험으로 확인함. 이 조절 범위를
+활용해 백색 안료 없이 블리치 셰이드의 명도를 확보함.</p>
+<p><strong>기존 기술 대비 개선점</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>기존 출력형 치과 레진</th>
+<th>본 발명</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>투명도·명도</td>
+<td>안료·불투명제 첨가로 조절</td>
+<td>2종 세라믹 필러의 배합비로 조절 (안료 없음)</td>
+</tr>
+<tr class="even">
+<td>블리치 셰이드</td>
+<td>불투명제·백색 안료로 흰색도 구현</td>
+<td>배합비로 명도를 높여 안료 없이 구현</td>
+</tr>
+<tr class="odd">
+<td>광경화 영향</td>
+<td>안료·불투명제가 405 nm 광을 흡수해 경화 저해</td>
+<td>투명도·명도 조절에 광흡수 첨가제 불필요</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>조성별 실측 결과</strong> (총 필러 약 25 wt% 고정)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>조성</th>
+<th>Ba-glass : SiO₂</th>
+<th>투과율 @600 nm (%)</th>
+<th>L*</th>
+<th>굴곡강도 (MPa)</th>
+<th>저전단 점도</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>100 : 0</td>
+<td>약 62</td>
+<td>약 80</td>
+<td>115.6 ± 7.1</td>
+<td>낮음</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>75 : 25</td>
+<td>약 51</td>
+<td>약 85</td>
+<td>119.4</td>
+<td>낮음</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>50 : 50</td>
+<td>약 47</td>
+<td>약 88</td>
+<td>124.0 ± 4.0</td>
+<td>낮음</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>25 : 75</td>
+<td>약 46</td>
+<td>약 89</td>
+<td>120.1</td>
+<td>약 7 Pa·s</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>0 : 100</td>
+<td>약 44</td>
+<td>약 90</td>
+<td>117.0</td>
+<td>약 30 Pa·s</td>
+</tr>
+</tbody>
+</table></div>
+<p class="note">투과율·L*·점도는 Figure set 그래프 판독값이며 원 데이터로 교체
+필요함. 굴곡강도는 측정값(N=5)임. 세포독성은 전 조성이 대조군과 유의차
+없음.</p>
+<p><strong>특허로 보호할 핵심기술 (청구항 후보)</strong></p>
+<ol type="1">
+<li>조성물: 광경화성 수지 매트릭스, 매트릭스보다 굴절률이 높은 마이크로
+크기 제1 무기 필러(Ba-glass), 굴절률과 입도가 다른 나노 크기 제2 무기
+필러(SiO₂)를 포함하고, 두 필러의 배합비로 투과율과 명도(L*)를 조절하는
+치과 수복용 광경화 레진</li>
+<li>블리치 셰이드: 제1항에서 명도(L*)가 높아지는 방향으로 배합비를 정해
+안료 없이 블리치 셰이드를 구현하는 조성물 및 방법</li>
+<li>프린팅 적합 범위: 제2 필러 비율 증가에 따른 점도 상승을 고려한 3D
+프린팅용 배합비 범위 (E 조성의 저전단 점도 급상승 근거)</li>
+<li>위 조성물로 광경화 3D 프린팅한 치과 보철물 및 그 제조 방법</li>
+</ol>
+<p class="callout purple">청구항의 수치 범위(배합비, 필러 함량, 입도)는 변리사와 실측 원
+데이터로 확정함. 청구항 1은 "안료를 포함하지 않는" 한정 없이 작성해,
+안료를 더한 셰이드 제품도 권리 범위에 포함되도록 함.</p>
+<h2 id="3-사업화-활용-가능성">3. 사업화 활용 가능성</h2>
+<p>본 기술은 당사 세라믹 하이브리드 레진(JustCeram)의 조성 기반 기술로,
+현행 제품과 후속 제품에 바로 적용됨.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>적용 대상</th>
+<th>활용 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>just ceramic resin (2026년 10월 식약처 인증 완료)</td>
+<td>Ba-glass·SiO₂ 2종 필러 배합 구조를 권리화해 현행 제품의 조성 기술
+보호</td>
+</tr>
+<tr class="even">
+<td>블리치 셰이드</td>
+<td>안료·원료 황변에 민감한 블리치 셰이드를 필러 배합비로 구현해 색 편차
+저감</td>
+</tr>
+<tr class="odd">
+<td>셰이드 라인업 (A1~A3.5)</td>
+<td>같은 베이스에 안료를 소량 더해 출시 예정 (청구항 1의 권리 범위로
+보호)</td>
+</tr>
+<tr class="even">
+<td>후속 레진 (2027년 상반기 출시 목표)</td>
+<td>같은 원리로 투명도 등급(고투명·표준) 제품군 확장</td>
+</tr>
+<tr class="odd">
+<td>장비 연계 (just Print Pro · Washer · Curing)</td>
+<td>당사 LCD 출력 워크플로 전용 레진의 경쟁력 강화</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>경쟁사 출력형 세라믹 레진과 다른 색조 구현 방식이므로, 국내외 출원
+시 후발 업체의 모방을 막는 방어 특허로 활용 가능함</li>
+<li>셰이드 간 베이스 매트릭스를 공유하면 양산 시 셰이드별 조정 항목을
+안료로 줄일 수 있어 OEM 품질 관리가 단순해짐</li>
+</ul>
+<h2 id="4-연구개발-참여-및-기여-현황">4. 연구개발 참여 및 기여 현황</h2>
+<p>본 기술은 당사 소재 R&amp;D팀 3명이 착상부터 조성 설계·평가까지
+수행했으며, 외부 기관의 기술개발 참여는 없음. 기여율은 아래 표의 빈칸을
+채워 확정함.</p>
+<p><strong>기술 개발에 실질적으로 기여한 연구원</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>성명</th>
+<th>소속·직위</th>
+<th>기여 내용</th>
+<th>기여율 (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지진우</td>
+<td>주식회사 글라우드 대표이사</td>
+<td>치과 임상 현장에서 요구하는 소재 특성에 대한 인사이트 제공</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>이윤희</td>
+<td>주식회사 글라우드 소재 R&amp;D팀 수석연구원</td>
+<td>2종 필러 배합비 개념 및 조성 설계, 조성 시리즈 제작, 출력·물성 평가
+총괄</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>백장미</td>
+<td>주식회사 글라우드 소재 R&amp;D팀 수석연구원</td>
+<td>색상 구현과 출력 품질 검토</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>외부 대학·연구기관 참여 현황</strong></p>
+<p class="callout green">없음. 본 기술의 착상과 개발은 당사 인원이 수행했으며, 외부 기관은
+논문화 단계의 측정·분석에만 참여함.</p>
+<ul>
+<li>발명자는 기술적 사상(필러 2종 배합비로 투명도·명도를 조절한다는
+착상과 그 구체화)에 실질적으로 기여한 사람만 해당함. 단순 측정·분석을
+수행한 외부 인력은 발명자가 아니며 논문 저자와 구분함</li>
+<li>외부 기관과의 공동연구 협약서에 지식재산권 귀속·공동출원 조항이
+있는지 확인 필요함</li>
+</ul>
+<h2 id="5-연구-진행-현황-및-논문-제출-일정">5. 연구 진행 현황 및 논문
+제출 일정</h2>
+<p>실험은 약 80% 완료되었고 방사선불투과성 데이터만 남았으며, 논문은
+2026년 12월까지 투고할 예정임. 학회 발표나 논문 공개 이력은 없음.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>현황</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>현재 연구·실험 단계</td>
+<td>약 80% 완료. 조성 설계, 광학 특성, 프린팅 특성, 기계적 물성, 재료
+분석, 세포독성 평가 완료</td>
+</tr>
+<tr class="even">
+<td>남은 실험</td>
+<td>방사선불투과성 평가</td>
+</tr>
+<tr class="odd">
+<td>논문 제출 예정 시기</td>
+<td>2026년 12월 이내</td>
+</tr>
+<tr class="even">
+<td>기존 공개 이력</td>
+<td>학회 발표·논문 공개 이력 없음</td>
+</tr>
+<tr class="odd">
+<td>향후 공개 예정</td>
+<td>논문 투고(이윤희 공동 1저자 예정), 2027년 학회 포스터 발표 검토</td>
+</tr>
+</tbody>
+</table></div>
+<p class="callout purple">특허 출원은 논문 투고 전에 마쳐야 하므로, 출원 목표 시점을 12월 투고
+이전으로 잡고 방사선불투과성 데이터는 출원 명세서에도 함께 반영함.</p>
+<section class="warn"><h2 id="출원-전-확인-사항">출원 전 확인 사항</h2>
+<p>신규성에 영향을 주는 공개 이력 확인이 가장 시급함. 논문 투고보다
+출원이 먼저라는 순서는 맞으나, 그 전에 이미 공개된 것이 있는지가
+관건임.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />공개 이력: Ba-glass·SiO₂ 2종 필러를
+쓰는 JustCeram이 파일럿 치과 공급·인증 과정에서 외부에 공개·판매된 최초
+일자 확인. 공개 후 12개월 이내면 공지예외 주장 필요. A1~A3.5는 출시 전에
+출원을 마쳐야 함</label></li>
+<li><label><input type="checkbox" />외부 제공 자료: 공동연구 제안 발표
+등에서 조성·Graphical abstract(필러 종류·입도 표기)를 제3자에게 보여준
+이력과 비밀유지 약정 여부</label></li>
+<li><label><input type="checkbox" />메커니즘 정합성: SiO₂는 Ba-glass보다
+매트릭스와 굴절률이 가까운데도 SiO₂ 비율이 높을수록 투과율이 낮아짐.
+굴절률 차이만으로는 설명되지 않으므로 입도(나노)·응집·계면 산란 기여를
+함께 기술해야 함</label></li>
+<li><label><input type="checkbox" />굴절률 실측:
+매트릭스·Ba-glass·SiO₂의 굴절률 실측값 확보 (현재는
+문헌·추정값)</label></li>
+<li><label><input type="checkbox" />"자연치 유사" 근거: 자연치 또는 VITA
+셰이드 가이드와 투과율·명도(L*)를 비교한 데이터 확보</label></li>
+<li><label><input type="checkbox" />주장 범위: A~E 시편의 색좌표는 a* 약
+-2, b* 약 -0.6~+0.8로 중성 백색임. 본 발명의 주장은 투명도·명도로
+한정하고, 색상·채도는 안료가 담당하는 것으로 기술함. 출시 전 A1~A3.5
+시제품의 투과율·L*a*b*를 블리치와 비교 측정하면 실시예로 추가
+가능</label></li>
+<li><label><input type="checkbox" />원 데이터: 투과율·L*·점도를 그래프
+판독값에서 원 데이터로 교체</label></li>
+<li><label><input type="checkbox" />Figure set 표기: 표지의
+"Bioglass"(Ba-glass는 생체활성유리가 아님)와 "Dentures"(덴처 적응증 제외
+결정과 불일치) 정리</label></li>
+<li><label><input type="checkbox" />발명자 명단·기여율 및 외부 기관 IP
+귀속 조항 확정</label></li>
+</ul>
+</section>
+</main>
+<footer>gloud · 사내 검토용 초안. 투과율·L*·점도는 그래프 판독값이며 원 데이터로 교체 예정.</footer>
+</body>
+</html>
